@@ -10,7 +10,7 @@ package UI;
  * @author Ruben Dario Guarnizo
  */
 public class EduPay extends javax.swing.JFrame {
-
+ //SS
     /**
      * Creates new form SerProfesor
      */
