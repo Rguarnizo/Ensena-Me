@@ -33,7 +33,10 @@ public class RegistroProfesor extends javax.swing.JFrame {
         btn2.setContentAreaFilled(false);
         btn2.setBorderPainted(false);
         
-        
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
+               
     }
 
     /**
@@ -50,7 +53,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
         btn2 = new javax.swing.JButton();
-        cbxAreasADictar = new javax.swing.JComboBox();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +81,13 @@ public class RegistroProfesor extends javax.swing.JFrame {
         cbxAreasADictar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbxAreasADictar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
 
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 60, 50));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Registro-Profesor.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 720));
@@ -99,6 +110,11 @@ public class RegistroProfesor extends javax.swing.JFrame {
        new SerProfesor().setVisible(true);
        dispose();
     }//GEN-LAST:event_btn2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,8 +156,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2;
-    private javax.swing.JButton btnSerProfesor;
-    private javax.swing.JComboBox cbxAreasADictar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtCobro;
     private javax.swing.JPasswordField txtContrasena;

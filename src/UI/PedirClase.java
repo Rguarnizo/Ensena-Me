@@ -42,6 +42,14 @@ public class PedirClase extends javax.swing.JFrame {
         btn5.setContentAreaFilled(false);
         btn5.setBorderPainted(false);
         
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
+        
+        jButton2.setOpaque(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setBorderPainted(false);
+        
         
     
     }
@@ -61,6 +69,9 @@ public class PedirClase extends javax.swing.JFrame {
         btn4 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,7 +100,31 @@ public class PedirClase extends javax.swing.JFrame {
         });
         getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 200, 50));
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 200, 50));
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 50, 50));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencias exactas", "Ciencias naturales", "Ciencias humanas", "Ciencias medicas" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 164, 190, 30));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, -1));
+
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 70, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Pedir_Clase.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -109,6 +144,22 @@ public class PedirClase extends javax.swing.JFrame {
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn4ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        new MenuPrincipal().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+           System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +204,9 @@ public class PedirClase extends javax.swing.JFrame {
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

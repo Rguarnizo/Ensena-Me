@@ -32,6 +32,10 @@ public class Registro extends javax.swing.JFrame {
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
         btn2.setBorderPainted(false);
+        
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
 
     }
     
@@ -63,6 +67,7 @@ public class Registro extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtFacultad = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -90,6 +95,13 @@ public class Registro extends javax.swing.JFrame {
         });
         getContentPane().add(txtFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 180, 30));
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 200, 30));
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 70, 60));
 
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +137,9 @@ public class Registro extends javax.swing.JFrame {
             String contraseña = txtContraseña.getText();
             Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
+            
+            new Login().setVisible(true);
+            dispose();
         }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -132,6 +147,11 @@ public class Registro extends javax.swing.JFrame {
     private void txtFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacultadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFacultadActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +192,7 @@ public class Registro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarrera;

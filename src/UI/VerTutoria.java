@@ -42,6 +42,14 @@ public class VerTutoria extends javax.swing.JFrame {
         btn5.setContentAreaFilled(false);
         btn5.setBorderPainted(false);
         
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
+        
+        jButton2.setOpaque(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setBorderPainted(false);
+        
         
     
     }
@@ -61,6 +69,7 @@ public class VerTutoria extends javax.swing.JFrame {
         btn4 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,8 +99,19 @@ public class VerTutoria extends javax.swing.JFrame {
         });
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 200, 50));
 
-        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 495, 50, 40));
+
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(733, 10, 60, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Ver_Tutorias.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -111,6 +131,18 @@ public class VerTutoria extends javax.swing.JFrame {
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         // TODO add your handling code here:
+         
+         new MenuPrincipal().setVisible(true);
+         dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+           System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +189,7 @@ public class VerTutoria extends javax.swing.JFrame {
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

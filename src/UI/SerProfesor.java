@@ -30,6 +30,12 @@ public class SerProfesor extends javax.swing.JFrame {
         btnRegistrarProfesor.setContentAreaFilled(false);
         btnRegistrarProfesor.setBorderPainted(false);
     
+        
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
+        
+
     }
 
     /**
@@ -42,7 +48,8 @@ public class SerProfesor extends javax.swing.JFrame {
     private void initComponents() {
 
         btn1 = new javax.swing.JButton();
-        btnRegistrarProfesor = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +69,13 @@ public class SerProfesor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRegistrarProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 60, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Ser_Profesor.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -83,6 +97,12 @@ public class SerProfesor extends javax.swing.JFrame {
         new RegistroProfesor().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegistrarProfesorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,7 +141,8 @@ public class SerProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
-    private javax.swing.JButton btnRegistrarProfesor;
+    private javax.swing.JButton btn2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
