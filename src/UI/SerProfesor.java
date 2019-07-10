@@ -26,9 +26,9 @@ public class SerProfesor extends javax.swing.JFrame {
         btn1.setContentAreaFilled(false);
         btn1.setBorderPainted(false);
         
-        btn2.setOpaque(false);
-        btn2.setContentAreaFilled(false);
-        btn2.setBorderPainted(false);
+        btnRegistrarProfesor.setOpaque(false);
+        btnRegistrarProfesor.setContentAreaFilled(false);
+        btnRegistrarProfesor.setBorderPainted(false);
     
         
         jButton1.setOpaque(false);
@@ -63,12 +63,12 @@ public class SerProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 70, 70));
 
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btnRegistrarProfesorActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
+        getContentPane().add(btnRegistrarProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,12 +91,12 @@ public class SerProfesor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn1ActionPerformed
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+    private void btnRegistrarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProfesorActionPerformed
         // TODO add your handling code here:
         
         new RegistroProfesor().setVisible(true);
         dispose();
-    }//GEN-LAST:event_btn2ActionPerformed
+    }//GEN-LAST:event_btnRegistrarProfesorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
