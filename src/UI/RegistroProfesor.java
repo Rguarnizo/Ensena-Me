@@ -53,7 +53,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
         btn2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbxMateria = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -78,8 +78,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 50, 60));
 
-        cbxAreasADictar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbxAreasADictar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
+        cbxMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbxMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +96,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSerProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerProfesorActionPerformed
-        String areaADictar = cbxAreasADictar.getSelectedItem().toString();
+        String areaADictar = cbxMateria.getSelectedItem().toString();
         double cobroPorHora = Double.parseDouble(txtCobro.getText());
         String correo = txtCorreo.getText();
         String contraseña = txtContrasena.getText();
@@ -156,8 +156,9 @@ public class RegistroProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2;
+    private javax.swing.JButton btnSerProfesor;
+    private javax.swing.JComboBox cbxMateria;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtCobro;
     private javax.swing.JPasswordField txtContrasena;

@@ -26,9 +26,9 @@ public class SerProfesor extends javax.swing.JFrame {
         btn1.setContentAreaFilled(false);
         btn1.setBorderPainted(false);
         
-        btnRegistrarProfesor.setOpaque(false);
-        btnRegistrarProfesor.setContentAreaFilled(false);
-        btnRegistrarProfesor.setBorderPainted(false);
+        btnRegistrarProfe.setOpaque(false);
+        btnRegistrarProfe.setContentAreaFilled(false);
+        btnRegistrarProfe.setBorderPainted(false);
     
         
         jButton1.setOpaque(false);
@@ -48,7 +48,7 @@ public class SerProfesor extends javax.swing.JFrame {
     private void initComponents() {
 
         btn1 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
+        btnRegistrarProfe = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -63,12 +63,12 @@ public class SerProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 70, 70));
 
-        btnRegistrarProfesor.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarProfe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarProfesorActionPerformed(evt);
+                btnRegistrarProfeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrarProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
+        getContentPane().add(btnRegistrarProfe, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,12 +91,12 @@ public class SerProfesor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn1ActionPerformed
 
-    private void btnRegistrarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProfesorActionPerformed
+    private void btnRegistrarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProfeActionPerformed
         // TODO add your handling code here:
         
         new RegistroProfesor().setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnRegistrarProfesorActionPerformed
+    }//GEN-LAST:event_btnRegistrarProfeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -141,7 +141,7 @@ public class SerProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
+    private javax.swing.JButton btnRegistrarProfe;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
