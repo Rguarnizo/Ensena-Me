@@ -62,6 +62,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -103,6 +104,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 290, 110));
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 750, 50, 40));
 
         btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +161,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +207,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
     private javax.swing.JButton btn6;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

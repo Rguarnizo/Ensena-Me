@@ -60,6 +60,7 @@ public class EduPay extends javax.swing.JFrame {
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,7 +72,7 @@ public class EduPay extends javax.swing.JFrame {
                 btn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, 190, 50));
+        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
 
@@ -82,6 +83,7 @@ public class EduPay extends javax.swing.JFrame {
         });
         getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 200, 50));
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 200, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 40, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/EduPay.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -142,6 +144,7 @@ public class EduPay extends javax.swing.JFrame {
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

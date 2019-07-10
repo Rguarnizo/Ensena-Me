@@ -89,8 +89,6 @@ public class PedirClase extends javax.swing.JFrame {
         });
         getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 200, 50));
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 200, 50));
-
-        jButton1.setText("jButton1");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 50, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Pedir_Clase.png"))); // NOI18N
