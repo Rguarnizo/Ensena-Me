@@ -91,7 +91,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         String contraseña = txtContrasena.getText();
         
         Logic.Crud.registrarProfesor(areaADictar, cobroPorHora, correo, contraseña);
-        JOptionPane.showMessageDialog(rootPane, "Usuario creado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(rootPane, "Ahora eres profesor", "Exito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSerProfesorActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
