@@ -26,9 +26,9 @@ public class SerProfesor extends javax.swing.JFrame {
         btn1.setContentAreaFilled(false);
         btn1.setBorderPainted(false);
         
-        btn2.setOpaque(false);
-        btn2.setContentAreaFilled(false);
-        btn2.setBorderPainted(false);
+        btnRegistrarProfesor.setOpaque(false);
+        btnRegistrarProfesor.setContentAreaFilled(false);
+        btnRegistrarProfesor.setBorderPainted(false);
     
     }
 
@@ -42,7 +42,7 @@ public class SerProfesor extends javax.swing.JFrame {
     private void initComponents() {
 
         btn1 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
+        btnRegistrarProfesor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,12 +56,12 @@ public class SerProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 70, 70));
 
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btnRegistrarProfesorActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
+        getContentPane().add(btnRegistrarProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Ser_Profesor.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -77,12 +77,12 @@ public class SerProfesor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn1ActionPerformed
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+    private void btnRegistrarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProfesorActionPerformed
         // TODO add your handling code here:
         
         new RegistroProfesor().setVisible(true);
         dispose();
-    }//GEN-LAST:event_btn2ActionPerformed
+    }//GEN-LAST:event_btnRegistrarProfesorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,7 +121,7 @@ public class SerProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
+    private javax.swing.JButton btnRegistrarProfesor;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

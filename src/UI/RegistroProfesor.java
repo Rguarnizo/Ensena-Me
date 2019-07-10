@@ -5,6 +5,8 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ruben Dario Guarnizo
@@ -23,9 +25,9 @@ public class RegistroProfesor extends javax.swing.JFrame {
     
     public void botonesTransparentes(){
     
-        btn1.setOpaque(false);
-        btn1.setContentAreaFilled(false);
-        btn1.setBorderPainted(false);
+        btnSerProfesor.setOpaque(false);
+        btnSerProfesor.setContentAreaFilled(false);
+        btnSerProfesor.setBorderPainted(false);
         
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
@@ -43,28 +45,27 @@ public class RegistroProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn1 = new javax.swing.JButton();
-        txtUsuario = new javax.swing.JTextField();
-        txtUsuario5 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        btnSerProfesor = new javax.swing.JButton();
+        txtCobro = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JPasswordField();
         btn2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbxAreasADictar = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        txtUsuario1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        btnSerProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                btnSerProfesorActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 160, 60));
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 50, 30));
-        getContentPane().add(txtUsuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 280, 30));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 240, 30));
+        getContentPane().add(btnSerProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 160, 60));
+        getContentPane().add(txtCobro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 70, 30));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 190, 30));
+        getContentPane().add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 190, 30));
 
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,22 +74,25 @@ public class RegistroProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 50, 60));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
+        cbxAreasADictar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbxAreasADictar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Registro-Profesor.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 720));
-        getContentPane().add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 50, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
+    private void btnSerProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerProfesorActionPerformed
+        String areaADictar = cbxAreasADictar.getSelectedItem().toString();
+        double cobroPorHora = Double.parseDouble(txtCobro.getText());
+        String correo = txtCorreo.getText();
+        String contraseña = txtContrasena.getText();
         
-        System.exit(0);
-    }//GEN-LAST:event_btn1ActionPerformed
+        Logic.Crud.registrarProfesor(areaADictar, cobroPorHora, correo, contraseña);
+        JOptionPane.showMessageDialog(rootPane, "Usuario creado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnSerProfesorActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
        // TODO add your handling code here:
@@ -135,13 +139,12 @@ public class RegistroProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton btnSerProfesor;
+    private javax.swing.JComboBox cbxAreasADictar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtUsuario1;
-    private javax.swing.JTextField txtUsuario5;
+    private javax.swing.JTextField txtCobro;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }
