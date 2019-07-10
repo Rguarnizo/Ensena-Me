@@ -1,19 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
-/**
- *
- * @author Ruben Dario Guarnizo
- */
+import Data.Bloque;
+import Data.Transaccion;
+import Data.TransaccionSaliente;
+import java.security.Security;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 public class EduPay extends javax.swing.JFrame {
- //SS
-    /**
-     * Creates new form SerProfesor
-     */
+    
+    public static Transaccion bloqueGenesis;
+    public static int dificultad = 3;
+    public static float transaccionMinima = 0.1f;
+    public static ArrayList<Bloque> blockchain = new ArrayList<>();
+    public static HashMap<String,TransaccionSaliente> UTXOs = new HashMap<>();
+    
     public EduPay() {
         initComponents();
         this.setLocationRelativeTo(null);
