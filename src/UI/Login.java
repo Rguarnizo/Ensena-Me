@@ -37,6 +37,8 @@ public class Login extends javax.swing.JFrame {
         btn3.setOpaque(false);
         btn3.setContentAreaFilled(false);
         btn3.setBorderPainted(false);
+        
+       
 
     }
 
