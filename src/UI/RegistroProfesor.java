@@ -55,6 +55,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
         btn2 = new javax.swing.JButton();
         cbxMateria = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblHorario = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,6 +90,33 @@ public class RegistroProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 60, 50));
 
+        tblHorario.setForeground(new java.awt.Color(255, 255, 255));
+        tblHorario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"9", "9", "9", "9", "9"},
+                {"10", "10", "10", "10", "10"},
+                {"11", "11", "11", "11", "11"},
+                {"14", "14", "14", "14", "14"},
+                {"15", "15", "15", "15", "15"},
+                {"16", "16", "16", "16", "16"}
+            },
+            new String [] {
+                "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblHorario.setColumnSelectionAllowed(true);
+        jScrollPane2.setViewportView(tblHorario);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 340, 130));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Registro-Profesor.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 720));
@@ -103,6 +132,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         
         Logic.Crud.registrarProfesor(areaADictar, cobroPorHora, correo, contraseña);
         JOptionPane.showMessageDialog(rootPane, "Ahora eres profesor", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_btnSerProfesorActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
@@ -160,6 +190,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
     private javax.swing.JComboBox cbxMateria;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblHorario;
     private javax.swing.JTextField txtCobro;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtCorreo;
