@@ -80,6 +80,12 @@ public class EduPay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
+
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
 
@@ -132,6 +138,12 @@ public class EduPay extends javax.swing.JFrame {
         
            System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+         // TODO add your handling code here:
+         
+         
+    }//GEN-LAST:event_btn2ActionPerformed
 
     /**
      * @param args the command line arguments
