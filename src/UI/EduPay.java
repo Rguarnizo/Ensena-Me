@@ -1,6 +1,7 @@
 package UI;
 
 import Data.Bloque;
+import Data.Monedero;
 import Data.Transaccion;
 import Data.TransaccionEntrada;
 import Data.TransaccionSaliente;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 public class EduPay extends javax.swing.JFrame {
     
+    public static Monedero monederoA=new Monedero();
     public static Transaccion bloqueGenesis;
     public static int dificultad = 3;
     public static float transaccionMinima = 0.1f;

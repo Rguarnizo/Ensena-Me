@@ -5,6 +5,10 @@
  */
 package UI;
 
+import Data.Bloque;
+import static UI.EduPay.añadirBloque;
+import static UI.EduPay.blockchain;
+import static UI.EduPay.monederoA;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Ruben Dario Guarnizo
  */
 public class Registro extends javax.swing.JFrame {
-
+    static String correo;
     /**
      * Creates new form Login
      */
@@ -127,16 +131,24 @@ public class Registro extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(rootPane,"Tiene campos vacios, verifique","Error", JOptionPane.WARNING_MESSAGE);
         } else {
+            
+            
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
             long telefono = Long.parseLong(txtTelefono.getText());
             String carrera = txtSemestre.getText();
             int semestre = Integer.parseInt(txtSemestre.getText());
             String facultad = txtFacultad.getText();
-            String correo = txtCorreo.getText();
+            correo = txtCorreo.getText();
             String contraseña = txtContraseña.getText();
             Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
+            /////////////
+            Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
+            block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
+            añadirBloque(block1);
+            ///////////////
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
+            
             
             new Login().setVisible(true);
             dispose();

@@ -18,7 +18,7 @@ public class Usuario extends Persona {
     private String facultad;
     private ArrayList<Clase> listaClases;
     private boolean esProfesor;
-
+    public Monedero monedero;
     public Usuario() {
     }
 
@@ -29,6 +29,7 @@ public class Usuario extends Persona {
         this.facultad = facultad;
         this.listaClases = listaClases;
         this.esProfesor = esProfesor;
+        monedero=new Monedero();
     }
 
 
