@@ -5,6 +5,16 @@
  */
 package UI;
 
+import Data.Bloque;
+import Data.Monedero;
+import Data.Transaccion;
+import Data.TransaccionSaliente;
+import static UI.EduPay.UTXOs;
+import static UI.EduPay.añadirBloque;
+import static UI.EduPay.blockchain;
+import static UI.EduPay.bloqueGenesis;
+import static UI.EduPay.monederoA;
+import java.security.Security;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -140,7 +150,19 @@ public class Login extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Api criptografia como proveedor de seguridad
+        Monedero monederoCentral = new Monedero();
+	//Creacion de bloque genesis que envia 100EC al monederoA
+	bloqueGenesis = new Transaccion(monederoCentral.llavePublica, monederoA.llavePublica, 1000, null);
+	bloqueGenesis.generarFirma(monederoCentral.llavePrivada);	 //Firma manual de la transaccion
+	bloqueGenesis.transaccionId = "0"; //ID de la transaccion manual asignar
+	bloqueGenesis.salidas.add(new TransaccionSaliente(bloqueGenesis.destinatario, bloqueGenesis.valor, bloqueGenesis.transaccionId));
+	UTXOs.put(bloqueGenesis.salidas.get(0).id, bloqueGenesis.salidas.get(0));
+	JOptionPane.showMessageDialog(null, "Minando el bloque genesis", "Advertencia" ,JOptionPane.INFORMATION_MESSAGE);
+	Bloque genesis = new Bloque("0");
+	genesis.añadirTransaccion(bloqueGenesis);
+        añadirBloque(genesis);        
+//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */

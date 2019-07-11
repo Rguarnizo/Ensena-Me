@@ -5,6 +5,8 @@
  */
 package UI;
 
+import static UI.Registro.correo;
+
 /**
  *
  * @author Ruben Dario Guarnizo
@@ -16,6 +18,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        txtSaldo.setText(Float.toString(Logic.Login.listaUsuarios.get(correo).monedero.obtenerBalance()));
         this.setLocationRelativeTo(null);
         botonesTransparentes();
     }
@@ -68,6 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
+        txtSaldo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,6 +126,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 570, 290, 110));
+
+        txtSaldo.setForeground(new java.awt.Color(255, 255, 255));
+        txtSaldo.setText("jLabel3");
+        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 120, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Menu_Principal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -218,5 +226,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn6;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel txtSaldo;
     // End of variables declaration//GEN-END:variables
 }

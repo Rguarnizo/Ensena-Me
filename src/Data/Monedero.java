@@ -1,104 +1,68 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
-/**
- *
- * @author Ruben Dario Guarnizo
- */
+import UI.EduPay;
+import java.security.*;
+import java.security.spec.ECGenParameterSpec;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 public class Monedero {
-    private PrivateKey llavePrivada;
-    private PublicKey llavePublica;
-    private long balance;
-
-    public void generarLlaves()
-    {
-
-    }
-    public void obtenerBalance()
-    {
-
-    }
-    public void enviarFondos(PublicKey remitente, double valor)
-    {
-
-    }
-
-    public Monedero() {
-    }
-
-    public Monedero(PrivateKey llavePrivada, PublicKey llavePublica, long balance) {
-        this.llavePrivada = llavePrivada;
-        this.llavePublica = llavePublica;
-        this.balance = balance;
-    }
-
-    public PrivateKey getLlavePrivada() {
-        return this.llavePrivada;
-    }
-
-    public void setLlavePrivada(PrivateKey llavePrivada) {
-        this.llavePrivada = llavePrivada;
-    }
-
-    public PublicKey getLlavePublica() {
-        return this.llavePublica;
-    }
-
-    public void setLlavePublica(PublicKey llavePublica) {
-        this.llavePublica = llavePublica;
-    }
-
-    public long getBalance() {
-        return this.balance;
-    }
-
-    public void setBalance(long balance) {
-        this.balance = balance;
-    }
-
-    public Monedero llavePrivada(PrivateKey llavePrivada) {
-        this.llavePrivada = llavePrivada;
-        return this;
-    }
-
-    public Monedero llavePublica(PublicKey llavePublica) {
-        this.llavePublica = llavePublica;
-        return this;
-    }
-
-    public Monedero balance(long balance) {
-        this.balance = balance;
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Monedero)) {
-            return false;
+	public PrivateKey llavePrivada;
+	public PublicKey llavePublica;
+	public HashMap<String,TransaccionSaliente> UTXOs = new HashMap<>();
+	
+	public Monedero() {
+		generarLlaves();
+	}
+		
+	public void generarLlaves() {
+		try {
+			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("ECDSA","BC");
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+			ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1"); //ECC Curva eliptica criptografica
+			keyGen.initialize(ecSpec, random); //Generador llaves
+	        KeyPair keyPair = keyGen.genKeyPair();
+	        llavePrivada = keyPair.getPrivate();
+	        llavePublica = keyPair.getPublic();
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public float obtenerBalance() {
+		float total = 0;	
+        for (Map.Entry<String, TransaccionSaliente> item: EduPay.UTXOs.entrySet()){
+        	TransaccionSaliente UTXO = item.getValue();
+            if(UTXO.isMine(llavePublica)) { //Verificar si el saldo es mio
+            	UTXOs.put(UTXO.id,UTXO); //Agregar a lista de transacciones no usadas
+            	total += UTXO.valor ; 
+            }
         }
-        Monedero monedero = (Monedero) o;
-        return Objects.equals(llavePrivada, monedero.llavePrivada) && Objects.equals(llavePublica, monedero.llavePublica) && balance == monedero.balance;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(llavePrivada, llavePublica, balance);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " llavePrivada='" + getLlavePrivada() + "'" +
-            ", llavePublica='" + getLlavePublica() + "'" +
-            ", balance='" + getBalance() + "'" +
-            "}";
-    }
-
-
+		return total;
+	}
+	
+	public Transaccion enviarFondos(PublicKey destinatario,float valor ) {
+		if(obtenerBalance() < valor) {
+			JOptionPane.showMessageDialog(null, "No tiene los fondos suficientes para hacer la transaccion. Descartada",
+			 " " ,JOptionPane.INFORMATION_MESSAGE);
+			System.out.println();
+			return null;
+		}
+		ArrayList<TransaccionEntrada> entradas = new ArrayList<>();
+		float total = 0;
+		for (Map.Entry<String, TransaccionSaliente> item: UTXOs.entrySet()){
+			TransaccionSaliente UTXO = item.getValue();
+			total += UTXO.valor;
+			entradas.add(new TransaccionEntrada(UTXO.id));
+			if(total > valor) break;
+		}
+		Transaccion nuevaTransaccion = new Transaccion(llavePublica, destinatario , valor, entradas);
+		nuevaTransaccion.generarFirma(llavePrivada); 
+		for(TransaccionEntrada entrada: entradas){
+			UTXOs.remove(entrada.idTransaccionSalida);
+		}
+		return nuevaTransaccion;
+	}
 }

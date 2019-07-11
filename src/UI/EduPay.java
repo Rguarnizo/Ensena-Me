@@ -1,24 +1,100 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
-/**
- *
- * @author Ruben Dario Guarnizo
- */
+import Data.Bloque;
+import Data.Monedero;
+import Data.Transaccion;
+import Data.TransaccionEntrada;
+import Data.TransaccionSaliente;
+import java.security.Security;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 public class EduPay extends javax.swing.JFrame {
-
-    /**
-     * Creates new form SerProfesor
-     */
+    
+    public static Monedero monederoA=new Monedero();
+    public static Transaccion bloqueGenesis;
+    public static int dificultad = 3;
+    public static float transaccionMinima = 0.1f;
+    public static ArrayList<Bloque> blockchain = new ArrayList<>();
+    public static HashMap<String,TransaccionSaliente> UTXOs = new HashMap<>();
+    
     public EduPay() {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
     }
+    public static Boolean cadenaEsValida() {
+		Bloque bloqueActual; 
+		Bloque bloqueAnterior;
+		String hashObjetivo = new String(new char[dificultad]).replace('\0', '0');
+		HashMap<String,TransaccionSaliente> UTXOsTemporal = new HashMap<>(); //lista temporal transacciones no gastadas
+		UTXOsTemporal.put(bloqueGenesis.salidas.get(0).id, bloqueGenesis.salidas.get(0));
+		for(int i=1; i < blockchain.size(); i++) {
+			bloqueActual = blockchain.get(i);
+			bloqueAnterior = blockchain.get(i-1);
+			if(!bloqueActual.hash.equals(bloqueActual.calcularHash())){ //Comparar hash registrado y hash calculado
+				JOptionPane.showMessageDialog(null, "Error, el hash no es igual", "Error" ,JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			if(!bloqueAnterior.hash.equals(bloqueActual.hashAnterior)){
+				JOptionPane.showMessageDialog(null, "Error, el hash anterior no es igual", "Error" ,JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			if(!bloqueActual.hash.substring( 0, dificultad).equals(hashObjetivo)) {
+				JOptionPane.showMessageDialog(null, "Error, este bloque no puede ser minado", "Error" ,JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+			TransaccionSaliente salidaTemporal;
+			for(int t=0; t <bloqueActual.transacciones.size(); t++) {
+				Transaccion transaccionActual = bloqueActual.transacciones.get(t);
+				if(!transaccionActual.verificarFirma()) {
+					JOptionPane.showMessageDialog(null, "Firma en Transaccion(" +t+ ") is invalida", "Error" ,JOptionPane.ERROR_MESSAGE);
+					return false; 
+				}
+				if(transaccionActual.obtenerValorEntrada() != transaccionActual.obtenerValorSalida()) {
+					JOptionPane.showMessageDialog(null, "Las entradas no son iguales para las salidas en la Transaccion(" +t+ ")"
+					, "Error" ,JOptionPane.ERROR_MESSAGE);
+					return false; 
+				}
+				for(TransaccionEntrada entrada: transaccionActual.entradas) {	
+					salidaTemporal = UTXOsTemporal.get(entrada.idTransaccionSalida);
+					if(salidaTemporal == null) {
+						JOptionPane.showMessageDialog(null, "Hace falta referencia de entrada en transaccion("+t+")"
+						, "Error" ,JOptionPane.ERROR_MESSAGE);
+						return false;
+					}
+					if(entrada.UTXO.valor != salidaTemporal.valor){
+						JOptionPane.showMessageDialog(null, "El valor de la transaccion("+t+") es invalido"
+						, "Error" ,JOptionPane.ERROR_MESSAGE);
+						return false;
+					}
+					UTXOsTemporal.remove(entrada.idTransaccionSalida);
+				}
+				for(TransaccionSaliente salida: transaccionActual.salidas){
+					UTXOsTemporal.put(salida.id, salida);
+				}
+				if(transaccionActual.salidas.get(0).destinatario != transaccionActual.destinatario){
+					JOptionPane.showMessageDialog(null, "Transaccion("+t+") destinatario incorrecto"
+					, "Error" ,JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				if(transaccionActual.salidas.get(1).destinatario != transaccionActual.remitente){
+					JOptionPane.showMessageDialog(null, "Transaccion(" + t + ") remitente incorrecto"
+					, "Error" ,JOptionPane.ERROR_MESSAGE);
+					return false;
+				}}}
+		ImageIcon icono=new ImageIcon(".//recourses/emojiFeliz.png");
+		ImageIcon icono1=new ImageIcon(icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+		JOptionPane.showMessageDialog(null, "La cadena de bloques es valida", "Felicitaciones" ,JOptionPane.INFORMATION_MESSAGE, icono1);
+		return true;
+	}
+	
+	public static void añadirBloque(Bloque nuevoBloque){
+		nuevoBloque.minarBloque(dificultad);
+		blockchain.add(nuevoBloque);
+	}
     
     public void botonesTransparentes(){
         
@@ -80,12 +156,6 @@ public class EduPay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
-
-        btn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
-            }
-        });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
 
@@ -138,12 +208,6 @@ public class EduPay extends javax.swing.JFrame {
         
            System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-         // TODO add your handling code here:
-         
-         
-    }//GEN-LAST:event_btn2ActionPerformed
 
     /**
      * @param args the command line arguments
