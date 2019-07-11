@@ -147,7 +147,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
         
-        System.exit(0);
+        new Login().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed

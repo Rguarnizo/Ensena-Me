@@ -78,7 +78,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 50, 60));
 
-        cbxMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ciencias exactas", "Ciencias medicas", "Ciencias humanas", "Ciencias naturales" }));
         getContentPane().add(cbxMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
