@@ -29,4 +29,13 @@ public class Login {
         else
             return false;
     }
+    public static boolean verificarSesion(String correo, String contraseña)
+    {
+        if(usuarioLogeado.equals(correo) && listaUsuarios.get(correo).getContraseña().equals(contraseña))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 }

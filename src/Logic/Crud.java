@@ -32,4 +32,19 @@ public class Crud {
        profesor.getUsuario().setEsProfesor(true);
        listaProfesores.add( profesor);
     }
+    public static boolean verificarEsProfesor()
+    {
+        String correo= Login.usuarioLogeado;
+        for(Profesor profe : listaProfesores)
+        {
+            if(profe.getUsuario().getCorreo().equals(correo))
+            {
+                if(profe.getUsuario().getEsProfesor())
+                    return true;
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
 }
