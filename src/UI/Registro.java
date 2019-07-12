@@ -147,7 +147,7 @@ public class Registro extends javax.swing.JFrame {
             block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
             añadirBloque(block1);
             ///////////////
-            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.INFORMATION_MESSAGE);
             
             
             new Login().setVisible(true);

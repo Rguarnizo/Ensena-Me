@@ -5,7 +5,7 @@
  */
 package Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.sql.Date;
 public class Clase {
 
     private Date fecha;
-    private String lugar;
+    private String lugar ;
     private Profesor profesorQueDicta;
     private Usuario estudianteQueRecibe;
 
