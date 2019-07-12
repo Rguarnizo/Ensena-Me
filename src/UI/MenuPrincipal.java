@@ -71,6 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
+        btn7 = new javax.swing.JButton();
         txtSaldo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -127,6 +128,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 570, 290, 110));
 
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 180, 170));
+
         txtSaldo.setForeground(new java.awt.Color(255, 255, 255));
         txtSaldo.setText("jLabel3");
         getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 120, 40));
@@ -182,6 +190,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        // TODO add your handling code here:
+        new ModificarUsuario().setVisible(true);
+    }//GEN-LAST:event_btn7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +237,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
     private javax.swing.JButton btn6;
+    private javax.swing.JButton btn7;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel txtSaldo;

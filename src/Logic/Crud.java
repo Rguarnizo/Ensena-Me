@@ -10,6 +10,7 @@ import Data.Usuario;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -23,11 +24,12 @@ public class Crud {
     {
         Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, null, false));
     }
-    public static void registrarProfesor(String materiaDictada, double cobroPorHora, String correo, String contraseña)
+    public static void registrarProfesor(String materiaDictada, double cobroPorHora, String correo, String contraseña, TableModel horario)
     {
        Usuario usuario = new Usuario();
        usuario = Logic.Login.listaUsuarios.get(correo);
-       Profesor profesor = new Profesor(usuario,materiaDictada,cobroPorHora,null,usuario.getNombre(),usuario.getApellido(),"null",contraseña,correo,usuario.getTelefono());
+       Profesor profesor = new Profesor(usuario,materiaDictada,cobroPorHora,null,horario,usuario.getNombre(),usuario.getApellido(),"null",contraseña,correo,usuario.getTelefono());
+       profesor.getUsuario().setEsProfesor(true);
        listaProfesores.add( profesor);
     }
 }

@@ -6,6 +6,8 @@
 package UI;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -18,25 +20,33 @@ public class RegistroProfesor extends javax.swing.JFrame {
      */
     public RegistroProfesor() {
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
         botonesTransparentes();
     }
-    
-    public void botonesTransparentes(){
-    
+
+    private void botonesTransparentes() {
+
         btnSerProfesor.setOpaque(false);
         btnSerProfesor.setContentAreaFilled(false);
         btnSerProfesor.setBorderPainted(false);
-        
+
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
         btn2.setBorderPainted(false);
-        
+
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
-               
+
+    }
+
+    private boolean camposVacios() {
+        if (txtCobro.getText().isEmpty() || txtContrasena.getText().isEmpty() || txtCorreo.getText().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -55,6 +65,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
         btn2 = new javax.swing.JButton();
         cbxMateria = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblHorario = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,6 +100,46 @@ public class RegistroProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 60, 50));
 
+        tblHorario.setForeground(new java.awt.Color(49, 50, 51));
+        tblHorario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"9:00 -10:00", null, null, null, null, null},
+                {"10:00 -11:00", null, null, null, null, null},
+                {"11:00-12:00", null, null, null, null, null},
+                {"14:00-15:00", null, null, null, null, null},
+                {"15:00-16:00", null, null, null, null, null},
+                {"16:00-17:00", null, null, null, null, null}
+            },
+            new String [] {
+                "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblHorario.setColumnSelectionAllowed(true);
+        tblHorario.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tblHorario.getTableHeader().setReorderingAllowed(false);
+        tblHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHorarioMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblHorario);
+        tblHorario.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tblHorario.getColumnModel().getColumnCount() > 0) {
+            tblHorario.getColumnModel().getColumn(0).setMinWidth(75);
+            tblHorario.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblHorario.getColumnModel().getColumn(0).setMaxWidth(85);
+        }
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 360, 130));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Registro-Profesor.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 720));
@@ -96,25 +148,66 @@ public class RegistroProfesor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSerProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerProfesorActionPerformed
-        String areaADictar = cbxMateria.getSelectedItem().toString();
-        double cobroPorHora = Double.parseDouble(txtCobro.getText());
-        String correo = txtCorreo.getText();
-        String contraseña = txtContrasena.getText();
-        
-        Logic.Crud.registrarProfesor(areaADictar, cobroPorHora, correo, contraseña);
-        JOptionPane.showMessageDialog(rootPane, "Ahora eres profesor", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+        if (camposVacios()) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese todos los datos por favor", "Campos vacios", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if (!(Logic.Login.iniciarSesion(txtCorreo.getText(), txtContrasena.getText()))) {
+                JOptionPane.showMessageDialog(rootPane, "Verifique sus datos de usuario", "Error de usuario", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String areaADictar = cbxMateria.getSelectedItem().toString();
+                double cobroPorHora = Double.parseDouble(txtCobro.getText());
+                String correo = txtCorreo.getText();
+                String contraseña = txtContrasena.getText();
+                Logic.Crud.registrarProfesor(areaADictar, cobroPorHora, correo, contraseña, tblHorario.getModel());
+                JOptionPane.showMessageDialog(rootPane, "Ahora eres profesor", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+
+
     }//GEN-LAST:event_btnSerProfesorActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-       // TODO add your handling code here:
-       new SerProfesor().setVisible(true);
-       dispose();
+        // TODO add your handling code here:
+        new SerProfesor().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHorarioMouseClicked
+        //Obtener la fila
+        int fila = tblHorario.rowAtPoint(evt.getPoint());
+        int columna = tblHorario.columnAtPoint(evt.getPoint());
+
+        switch (fila) {
+            case 0:
+                tblHorario.setValueAt(9, fila, columna);
+                break;
+            case 1:
+                tblHorario.setValueAt(10, fila, columna);
+                break;
+            case 2:
+                tblHorario.setValueAt(11, fila, columna);
+                break;
+            case 3:
+                tblHorario.setValueAt(14, fila, columna);
+                break;
+            case 4:
+                tblHorario.setValueAt(15, fila, columna);
+                break;
+            case 5:
+                tblHorario.setValueAt(16, fila, columna);
+                break;
+
+        }
+
+
+    }//GEN-LAST:event_tblHorarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,12 +247,17 @@ public class RegistroProfesor extends javax.swing.JFrame {
         });
     }
 
+    private void establecerHorario(int fila) {
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2;
     private javax.swing.JButton btnSerProfesor;
     private javax.swing.JComboBox cbxMateria;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblHorario;
     private javax.swing.JTextField txtCobro;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtCorreo;

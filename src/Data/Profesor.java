@@ -7,6 +7,7 @@ package Data;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -17,17 +18,17 @@ public class Profesor extends Persona {
     private Usuario usuario;
     private String materiaDictada;
     private double cobroPorHora;
-    private ArrayList<Clase> listaClases;
+    private ArrayList<Clase> listaClases ;
+    private TableModel horario;
 
-    public Profesor(Usuario usuario, String materiaDictada, double cobroPorHora, ArrayList<Clase> listaClases, String nombre, String apellido, String direccionMonedero, String contraseña, String correo, long telefono) {
+    public Profesor(Usuario usuario, String materiaDictada, double cobroPorHora, ArrayList<Clase> listaClases, TableModel horario, String nombre, String apellido, String direccionMonedero, String contraseña, String correo, long telefono) {
         super(nombre, apellido, direccionMonedero, contraseña, correo, telefono);
         this.usuario = usuario;
         this.materiaDictada = materiaDictada;
         this.cobroPorHora = cobroPorHora;
         this.listaClases = listaClases;
+        this.horario = horario;
     }
-
-   
 
     public Usuario getUsuario() {
         return usuario;
@@ -57,15 +58,22 @@ public class Profesor extends Persona {
         return listaClases;
     }
 
-    public void setListaClases(ArrayList<Clase> listaClases) {
-        this.listaClases = listaClases;
+    public void setListaClases(Clase cita) {
+        listaClases = new ArrayList<>();
+        listaClases.add(cita);
     }
 
-    @Override
-    public String toString() {
-        return "Nombre : "+ this.getNombre() + "  Dicta "+ this.materiaDictada+"Cobra: "+ this.cobroPorHora;
-        
+    public TableModel getHorario() {
+        return horario;
     }
+
+    public void setHorario(TableModel horario) {
+        this.horario = horario;
+    }
+
+    public Profesor() {
+    }
+
     
     
 

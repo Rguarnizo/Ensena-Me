@@ -15,13 +15,15 @@ import java.util.TreeMap;
  * @author Ruben Dario Guarnizo
  */
 public class Login {
-
+    
+    public static String usuarioLogeado;
     public static TreeMap<String, Usuario> listaUsuarios = new TreeMap<>();
 
     public static boolean iniciarSesion(String correo, String contraseña) {
         if (listaUsuarios.containsKey(correo) == false) {
             return false;
         } else if (listaUsuarios.get(correo).getContraseña().equals(contraseña)) {
+            usuarioLogeado= correo;
             return true;
         }
         else
