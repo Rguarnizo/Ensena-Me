@@ -7,6 +7,7 @@ package UI;
 
 import Data.Profesor;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.text.TableView;
 
@@ -24,46 +25,46 @@ public class PedirClase extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         botonesTransparentes();
         DefaultListModel modelo = new DefaultListModel();
-        for (Profesor profe : Logic.Crud.listaProfesores)
-        {
-            modelo.addElement(profe);
+        for (Profesor profe : Logic.Crud.listaProfesores) {
+            if (!(profe.getUsuario().getCorreo().equals(Logic.Login.usuarioLogeado))) {
+                modelo.addElement(profe);
+            }
         }
         lstProfesores.setModel(modelo);
         //tblHorario.setValueAt(1000, 1,2);
+
     }
-    
-    public void botonesTransparentes(){
-        
+
+    public void botonesTransparentes() {
+
         btnPedir.setOpaque(false);
         btnPedir.setContentAreaFilled(false);
         btnPedir.setBorderPainted(false);
-        
+
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
         btn2.setBorderPainted(false);
-        
+
         btn3.setOpaque(false);
         btn3.setContentAreaFilled(false);
         btn3.setBorderPainted(false);
-        
+
         btn4.setOpaque(false);
         btn4.setContentAreaFilled(false);
         btn4.setBorderPainted(false);
-        
+
         btn5.setOpaque(false);
         btn5.setContentAreaFilled(false);
         btn5.setBorderPainted(false);
-        
+
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
-        
+
         jButton2.setOpaque(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setBorderPainted(false);
-        
-        
-    
+
     }
 
     /**
@@ -124,22 +125,22 @@ public class PedirClase extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 50, 50));
 
-        tblHorario.setForeground(new java.awt.Color(255, 255, 255));
+        tblHorario.setForeground(new java.awt.Color(49, 50, 51));
         tblHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"9", "9", "9", "9", "9"},
-                {"10", "10", "10", "10", "10"},
-                {"11", "11", "11", "11", "11"},
-                {"14", "14", "14", "14", "14"},
-                {"15", "15", "15", "15", "15"},
-                {"16", "16", "16", "16", "16"}
+                {null, "", "", "", "", ""},
+                {null, "", "", "", "", ""},
+                {null, "", "", "", "", ""},
+                {null, "", "", "", "", ""},
+                {null, "", "", "", "", ""},
+                {null, "", "", "", "", ""}
             },
             new String [] {
-                "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+                "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -147,20 +148,29 @@ public class PedirClase extends javax.swing.JFrame {
             }
         });
         tblHorario.setColumnSelectionAllowed(true);
+        tblHorario.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblHorario);
         tblHorario.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblHorario.getColumnModel().getColumnCount() > 0) {
             tblHorario.getColumnModel().getColumn(0).setResizable(false);
+            tblHorario.getColumnModel().getColumn(0).setPreferredWidth(80);
             tblHorario.getColumnModel().getColumn(1).setResizable(false);
             tblHorario.getColumnModel().getColumn(2).setResizable(false);
             tblHorario.getColumnModel().getColumn(3).setResizable(false);
+            tblHorario.getColumnModel().getColumn(4).setResizable(false);
+            tblHorario.getColumnModel().getColumn(5).setResizable(false);
         }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 300, 130));
 
-        cbxLugar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ciencias exactas", "Ciencias naturales", "Ciencias humanas", "Ciencias medicas" }));
-        getContentPane().add(cbxLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 190, 30));
+        cbxLugar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hemeroteca Nacional Universitaria\t", "Biblioteca Central", "Edificio de Ciencia y Tecnologia", "Edificio Julio Garavito", "Torre Central de Informatica", " " }));
+        getContentPane().add(cbxLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 190, 30));
 
+        lstProfesores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstProfesoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstProfesores);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 200, 170));
@@ -185,10 +195,15 @@ public class PedirClase extends javax.swing.JFrame {
     private void btnPedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedirActionPerformed
         int fila = tblHorario.getSelectedRow();
         int columna = tblHorario.getSelectedColumn();
-        
-        //Usuario pasado como null, pero cuando este el atributo correo, se puede acceder l array y buscar por correo. 
-        Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila,columna).toString()),cbxLugar.getSelectedItem().toString(),(Profesor)lstProfesores.getSelectedValue(),null);
-        JOptionPane.showMessageDialog(rootPane, "Clase creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+        if (lstProfesores.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Primero seleccione un profesor y un horario", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila, columna).toString()), cbxLugar.getSelectedItem().toString(), (Profesor) lstProfesores.getSelectedValue(), Logic.Login.listaUsuarios.get(Logic.Login.usuarioLogeado));
+            JOptionPane.showMessageDialog(rootPane, "Clase creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btnPedirActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
@@ -201,15 +216,24 @@ public class PedirClase extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         new MenuPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-           System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void lstProfesoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstProfesoresMouseClicked
+        JList list = (JList) evt.getSource();
+        if (evt.getClickCount() == 1) {
+            Profesor profesor = new Profesor();
+            profesor = (Profesor) lstProfesores.getSelectedValue();
+            tblHorario.setModel(profesor.getHorario());
+        }
+    }//GEN-LAST:event_lstProfesoresMouseClicked
 
     /**
      * @param args the command line arguments

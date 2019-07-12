@@ -104,8 +104,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, 270, 30));
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 349, 220, 30));
-        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 210, 30));
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 200, 30));
+        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 180, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Login.png"))); // NOI18N
         jLabel1.setText("jLabel1");

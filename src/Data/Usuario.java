@@ -61,8 +61,9 @@ public class Usuario extends Persona {
         return this.listaClases;
     }
 
-    public void setListaClases(ArrayList listaClases) {
-        this.listaClases = listaClases;
+    public void setListaClases(Clase cita) {
+        listaClases = new ArrayList<>();
+        listaClases.add(cita);
     }
 
     public boolean isEsProfesor() {

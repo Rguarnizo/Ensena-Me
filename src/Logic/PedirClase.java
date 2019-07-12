@@ -23,8 +23,10 @@ public class PedirClase {
         int mes = fecha.getMonth();
         int dia = fecha.getDay();
         
-        Date fecha1= new Date(año,mes,dia,hora,00);
-        Clase clase = new Clase(fecha1, lugar, profesorQueDicta, usuarioQueRecibe);
+        Date fechaCita= new Date(año,mes,dia,hora,00);
+        Clase clase = new Clase(fechaCita, lugar, profesorQueDicta, usuarioQueRecibe);
+        profesorQueDicta.setListaClases(clase);
+        usuarioQueRecibe.setListaClases(clase);
         
         
     }
