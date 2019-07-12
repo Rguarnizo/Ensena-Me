@@ -28,7 +28,7 @@ public class EduPay extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
-        listKey.
+        //listKey
         //jLabel2.setText(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica.toString());
     }
     public static Boolean cadenaEsValida() {
@@ -167,19 +167,11 @@ public class EduPay extends javax.swing.JFrame {
                 btn1ActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 190, 50));
 
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
-=======
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
-
-        btn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-              
->>>>>>> 3a540e6f43626508045ac2fdc22dc257cdc41f1f
             }
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
