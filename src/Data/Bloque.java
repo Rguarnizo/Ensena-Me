@@ -36,7 +36,7 @@ public class Bloque {
 			varAux ++;
 			hash = calcularHash();
 		}
-		JOptionPane.showMessageDialog(null, "Bloque minado!", " " ,JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 	//Verifica la transaccion y la añade las transacciones al bloque
 	public boolean añadirTransaccion(Transaccion transaccion) {
@@ -48,7 +48,7 @@ public class Bloque {
 			}
 		}
 		transacciones.add(transaccion);
-		JOptionPane.showMessageDialog(null, "Transaccion añadida al blockchain", " " ,JOptionPane.INFORMATION_MESSAGE);
+		
 		return true;
 	}
 }

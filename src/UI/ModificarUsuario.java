@@ -6,36 +6,50 @@
 package UI;
 
 import Data.Bloque;
+import Data.Usuario;
 import static UI.EduPay.añadirBloque;
 import static UI.EduPay.blockchain;
 import static UI.EduPay.monederoA;
+import static UI.Registro.correo;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ruben Dario Guarnizo
  */
-public class Registro extends javax.swing.JFrame {
-    static String correo;
+public class ModificarUsuario extends javax.swing.JFrame {
+   
     /**
      * Creates new form Login
      */
-    public Registro() {
+    public ModificarUsuario() {
         initComponents();
-
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        
+        Usuario usuarioActual = Logic.Login.listaUsuarios.get(correo);
+        txtNombre.setText(usuarioActual.getNombre());
+        txtApellido.setText(usuarioActual.getApellido());
+        txtCarrera.setText(usuarioActual.getCarrera());
+        txtFacultad.setText(usuarioActual.getFacultad());
+        txtSemestre.setText(String.valueOf(usuarioActual.getSemestre()));
+        txtTelefono.setText(String.valueOf(usuarioActual.getTelefono()));
+        txtCorreo.setText(usuarioActual.getCorreo());
+        txtContraseña.setText(usuarioActual.getContraseña());
+        txtCorreo.setEditable(false);
+        
+        
     }
 
     private void botonesTransparentes() {
 
-        btnRegistrar.setOpaque(false);
-        btnRegistrar.setContentAreaFilled(false);
-        btnRegistrar.setBorderPainted(false);
+        btnEliminar.setOpaque(false);
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setBorderPainted(false);
 
-        btn2.setOpaque(false);
-        btn2.setContentAreaFilled(false);
-        btn2.setBorderPainted(false);
+        btnAtras.setOpaque(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.setBorderPainted(false);
         
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
@@ -62,7 +76,7 @@ public class Registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRegistrar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
@@ -71,20 +85,21 @@ public class Registro extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtFacultad = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
+        btnRegistrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 110, 60));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 160, 70));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 240, 30));
         getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 240, 30));
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 200, 30));
@@ -100,6 +115,13 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().add(txtFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 180, 30));
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 200, 30));
 
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 150, 60));
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -107,27 +129,27 @@ public class Registro extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 70, 60));
 
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 50, 60));
+        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 660, 50, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Registro.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/ModificarUsuario.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
         new Login().setVisible(true);
         dispose();
-    }//GEN-LAST:event_btn2ActionPerformed
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (camposVacios()) {
             JOptionPane.showMessageDialog(rootPane,"Tiene campos vacios, verifique","Error", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -150,11 +172,11 @@ public class Registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
             
             
-            new Login().setVisible(true);
+            new MenuPrincipal().setVisible(true);
             dispose();
         }
 
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacultadActionPerformed
         // TODO add your handling code here:
@@ -164,6 +186,11 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,27 +209,30 @@ public class Registro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Registro().setVisible(true);
+                new ModificarUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn2;
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

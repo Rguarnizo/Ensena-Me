@@ -158,7 +158,6 @@ public class Login extends javax.swing.JFrame {
 	bloqueGenesis.transaccionId = "0"; //ID de la transaccion manual asignar
 	bloqueGenesis.salidas.add(new TransaccionSaliente(bloqueGenesis.destinatario, bloqueGenesis.valor, bloqueGenesis.transaccionId));
 	UTXOs.put(bloqueGenesis.salidas.get(0).id, bloqueGenesis.salidas.get(0));
-	JOptionPane.showMessageDialog(null, "Minando el bloque genesis", "Advertencia" ,JOptionPane.INFORMATION_MESSAGE);
 	Bloque genesis = new Bloque("0");
 	genesis.añadirTransaccion(bloqueGenesis);
         añadirBloque(genesis);        

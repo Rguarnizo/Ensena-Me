@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+
 public class EduPay extends javax.swing.JFrame {
     
     public static Monedero monederoA=new Monedero();
@@ -127,6 +129,8 @@ public class EduPay extends javax.swing.JFrame {
         jButton2.setBorderPainted(false);
     
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,6 +160,12 @@ public class EduPay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
+
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+              
+            }
+        });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
 
