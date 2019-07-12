@@ -5,6 +5,8 @@ import Data.Monedero;
 import Data.Transaccion;
 import Data.TransaccionEntrada;
 import Data.TransaccionSaliente;
+import static UI.Registro.correo;
+import java.awt.ComponentOrientation;
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +26,8 @@ public class EduPay extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        listKey.
+        //jLabel2.setText(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica.toString());
     }
     public static Boolean cadenaEsValida() {
 		Bloque bloqueActual; 
@@ -144,6 +148,10 @@ public class EduPay extends javax.swing.JFrame {
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txtMonto = new javax.swing.JTextField();
+        cbUsuarios = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listKey = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -155,7 +163,13 @@ public class EduPay extends javax.swing.JFrame {
                 btn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
+        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 190, 50));
+
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
 
@@ -180,6 +194,19 @@ public class EduPay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 60, 50));
+        getContentPane().add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 400, 30));
+
+        cbUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        getContentPane().add(cbUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 400, 40));
+
+        listKey.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listKey);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 400, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/EduPay.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -253,8 +280,12 @@ public class EduPay extends javax.swing.JFrame {
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
+    private javax.swing.JComboBox<String> cbUsuarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listKey;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }
