@@ -5,10 +5,13 @@ import Data.Monedero;
 import Data.Transaccion;
 import Data.TransaccionEntrada;
 import Data.TransaccionSaliente;
-import java.security.Security;
+import Data.Usuario;
+import static UI.Login.correo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.Image;
+import java.util.Iterator;
+import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -26,6 +29,11 @@ public class EduPay extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        for (Usuario i : Logic.Login.listaUsuarios.values()) {
+            cbUsuarios.addItem(i.getCorreo());
+        }
+        //lblKeys.setText(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica.toString());
+        txtKeys.setText(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica.toString());
     }
     public static Boolean cadenaEsValida() {
 		Bloque bloqueActual; 
@@ -100,9 +108,9 @@ public class EduPay extends javax.swing.JFrame {
     
     public void botonesTransparentes(){
         
-        btn1.setOpaque(false);
-        btn1.setContentAreaFilled(false);
-        btn1.setBorderPainted(false);
+        btnEnviar.setOpaque(false);
+        btnEnviar.setContentAreaFilled(false);
+        btnEnviar.setBorderPainted(false);
         
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
@@ -141,29 +149,33 @@ public class EduPay extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn1 = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txtMonto = new javax.swing.JTextField();
+        cbUsuarios = new javax.swing.JComboBox<>();
+        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
+        txtKeys = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                btnEnviarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
+        getContentPane().add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 190, 50));
 
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-              
+                btn2ActionPerformed(evt);
             }
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
@@ -190,6 +202,16 @@ public class EduPay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 60, 50));
+        getContentPane().add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 400, 30));
+
+        cbUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        getContentPane().add(cbUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 400, 40));
+
+        txtKeys.setColumns(20);
+        txtKeys.setRows(5);
+        jScrollPane1.setViewportView(txtKeys);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 410, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/EduPay.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -198,9 +220,30 @@ public class EduPay extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn1ActionPerformed
+        if(txtMonto.getText()==" " || txtMonto.getText()=="" || cbUsuarios.getSelectedIndex()==-1){
+            JOptionPane.showMessageDialog(null, "Error, selecione datos validos", 
+                    "Advertencia" ,JOptionPane.INFORMATION_MESSAGE);
+        }else{
+                float valor=2;
+                Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
+                try
+                    {
+                      valor = Float.parseFloat(txtMonto.getText());
+                    }
+                    catch (NumberFormatException nfe)
+                    {
+                      nfe.printStackTrace();
+                    }
+		block1.añadirTransaccion(Logic.Login.listaUsuarios.get(correo).monedero.enviarFondos
+                (Logic.Login.listaUsuarios.get(cbUsuarios.getSelectedItem().toString()).monedero.llavePublica, valor));
+		añadirBloque(block1);
+                cadenaEsValida();
+                JOptionPane.showMessageDialog(null, "Transaccion realizada con exito", 
+                    "Advertencia" ,JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
@@ -258,13 +301,16 @@ public class EduPay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
+    private javax.swing.JButton btnEnviar;
+    private javax.swing.JComboBox<String> cbUsuarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea txtKeys;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

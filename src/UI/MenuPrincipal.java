@@ -5,7 +5,7 @@
  */
 package UI;
 
-import static UI.Registro.correo;
+import static UI.Login.correo;
 
 /**
  *
