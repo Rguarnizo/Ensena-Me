@@ -155,9 +155,9 @@ public class Registro extends javax.swing.JFrame {
                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
             /////////////
-            Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
-            block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 10));
-            añadirBloque(block1);
+            Bloque block = new Bloque(blockchain.get(blockchain.size()-1).hash);
+            block.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
+            añadirBloque(block);
             ///////////////
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.INFORMATION_MESSAGE);
             

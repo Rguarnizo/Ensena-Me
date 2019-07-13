@@ -9,7 +9,7 @@ public class Bloque implements Serializable {
 	public String hash;
 	public String hashAnterior; 
 	public String merkleRoot; //Contiene el hash de todas las transacciones de los bloques en la Blockchain
-	public ArrayList<Transaccion> transacciones = new ArrayList<>(); //our data will be a simple message.
+	public ArrayList<Transaccion> transacciones = new ArrayList<>(); //
 	public long timeStamp; //milisegundos desde 1/1/1970 para firma hash
 	public int varAux; //Var contador bloques
 	

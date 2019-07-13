@@ -87,5 +87,19 @@ public class Crud {
             Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     
+    public static boolean verificarEsProfesor()
+    {
+        String correo= Login.usuarioLogeado;
+        for(Profesor profe : listaProfesores)
+        {
+            if(profe.getUsuario().getCorreo().equals(correo))
+            {
+                if(profe.getUsuario().getEsProfesor())
+                    return true;
+                else
+                    return false;
+            }
+        }
+        return false;
     }
 }

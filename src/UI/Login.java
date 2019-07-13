@@ -42,7 +42,9 @@ import javax.swing.UIManager;
 public class Login extends javax.swing.JFrame {
 
     static String correo;
-    
+    /**
+     * Creates new form Login
+     */
     public Login() {
         
         initComponents();

@@ -158,7 +158,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         if (camposVacios()) {
             JOptionPane.showMessageDialog(rootPane, "Ingrese todos los datos por favor", "Campos vacios", JOptionPane.WARNING_MESSAGE);
         } else {
-            if (!(Logic.Login.iniciarSesion(txtCorreo.getText(), txtContrasena.getText()))) {
+            if (Logic.Login.verificarSesion(txtCorreo.getText(), txtContrasena.getText())==false) {
                 JOptionPane.showMessageDialog(rootPane, "Verifique sus datos de usuario", "Error de usuario", JOptionPane.ERROR_MESSAGE);
             } else {
                 String areaADictar = cbxMateria.getSelectedItem().toString();
@@ -198,29 +198,33 @@ public class RegistroProfesor extends javax.swing.JFrame {
         //Obtener la fila
         int fila = tblHorario.rowAtPoint(evt.getPoint());
         int columna = tblHorario.columnAtPoint(evt.getPoint());
+        
+        if (!(tblHorario.getValueAt(fila, columna)==null)) {
+            tblHorario.setValueAt(null, fila, columna);
+        } else {
+            switch (fila) {
+                case 0:
+                    tblHorario.setValueAt(9, fila, columna);
+                    break;
+                case 1:
+                    tblHorario.setValueAt(10, fila, columna);
+                    break;
+                case 2:
+                    tblHorario.setValueAt(11, fila, columna);
+                    break;
+                case 3:
+                    tblHorario.setValueAt(14, fila, columna);
+                    break;
+                case 4:
+                    tblHorario.setValueAt(15, fila, columna);
+                    break;
+                case 5:
+                    tblHorario.setValueAt(16, fila, columna);
+                    break;
 
-        switch (fila) {
-            case 0:
-                tblHorario.setValueAt(9, fila, columna);
-                break;
-            case 1:
-                tblHorario.setValueAt(10, fila, columna);
-                break;
-            case 2:
-                tblHorario.setValueAt(11, fila, columna);
-                break;
-            case 3:
-                tblHorario.setValueAt(14, fila, columna);
-                break;
-            case 4:
-                tblHorario.setValueAt(15, fila, columna);
-                break;
-            case 5:
-                tblHorario.setValueAt(16, fila, columna);
-                break;
+            }
 
         }
-
 
     }//GEN-LAST:event_tblHorarioMouseClicked
 

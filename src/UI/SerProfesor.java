@@ -8,6 +8,7 @@ package UI;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,22 +24,20 @@ public class SerProfesor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         botonesTransparentes();
     }
-    
-    public void botonesTransparentes(){
-        
+
+    public void botonesTransparentes() {
+
         btn1.setOpaque(false);
         btn1.setContentAreaFilled(false);
         btn1.setBorderPainted(false);
-        
+
         btnRegistrarProfe.setOpaque(false);
         btnRegistrarProfe.setContentAreaFilled(false);
         btnRegistrarProfe.setBorderPainted(false);
-    
-        
+
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
-        
 
     }
 
@@ -93,16 +92,22 @@ public class SerProfesor extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        
+
         new MenuPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnRegistrarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProfeActionPerformed
-        // TODO add your handling code here:
-        
-        new RegistroProfesor().setVisible(true);
-        dispose();
+
+        if (Logic.Crud.verificarEsProfesor() == false) {
+            new RegistroProfesor().setVisible(true);
+            dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "Ya eres profesor!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnRegistrarProfeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
