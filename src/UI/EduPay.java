@@ -211,7 +211,6 @@ public class EduPay extends javax.swing.JFrame {
         txtKeys.setRows(5);
         jScrollPane1.setViewportView(txtKeys);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 410, 70));
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 410, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/EduPay.png"))); // NOI18N
