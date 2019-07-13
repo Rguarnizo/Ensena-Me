@@ -5,11 +5,13 @@
  */
 package Data;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ruben Dario Guarnizo
  */
-public class EduCoins {
+public class EduCoins implements Serializable {
     private String nombre;
     private String direccionMonedero;
 

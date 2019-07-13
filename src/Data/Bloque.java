@@ -1,10 +1,11 @@
 package Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class Bloque {
+public class Bloque implements Serializable {
 	public String hash;
 	public String hashAnterior; 
 	public String merkleRoot; //Contiene el hash de todas las transacciones de los bloques en la Blockchain

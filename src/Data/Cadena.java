@@ -1,10 +1,11 @@
 package Data;
+import java.io.Serializable;
 import java.security.*;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-public class Cadena {
+public class Cadena implements Serializable {
 	//Aplica codificacion Sha256 al String
 	public static String aplicarSha256(String entrada){
 		try {

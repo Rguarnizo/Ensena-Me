@@ -5,7 +5,7 @@
  */
 package UI;
 
-import static UI.Registro.correo;
+import static UI.Login.correo;
 
 /**
  *
@@ -18,9 +18,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        txtSaldo.setText(Float.toString(Logic.Login.listaUsuarios.get(correo).monedero.obtenerBalance()));
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        txtSaldo.setText(Float.toString(Logic.Login.listaUsuarios.get(correo).monedero.getBalance()));
     }
     
     public void botonesTransparentes(){
@@ -53,6 +53,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
         
+        btn7.setOpaque(false);
+        btn7.setContentAreaFilled(false);
+        btn7.setBorderPainted(false);
+        
     }
 
     /**
@@ -79,6 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1ActionPerformed(evt);
@@ -86,6 +91,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 290, 110));
 
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
@@ -93,6 +99,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 290, 110));
 
+        btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn3ActionPerformed(evt);
@@ -100,6 +107,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 290, 110));
 
+        btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn4ActionPerformed(evt);
@@ -107,6 +115,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 290, 110));
 
+        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn5ActionPerformed(evt);
@@ -114,6 +123,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 290, 110));
 
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -121,6 +131,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 750, 50, 40));
 
+        btn6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn6ActionPerformed(evt);
@@ -128,6 +139,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 570, 290, 110));
 
+        btn7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn7ActionPerformed(evt);
@@ -136,8 +148,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 180, 170));
 
         txtSaldo.setForeground(new java.awt.Color(255, 255, 255));
-        txtSaldo.setText("jLabel3");
-        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 120, 40));
+        txtSaldo.setText("Saldo Cuenta");
+        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 120, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Menu_Principal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -193,6 +205,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         new ModificarUsuario().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn7ActionPerformed
 
     /**

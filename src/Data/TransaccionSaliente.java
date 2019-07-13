@@ -1,8 +1,9 @@
 package Data;
 
+import java.io.Serializable;
 import java.security.PublicKey;
 
-public class TransaccionSaliente {
+public class TransaccionSaliente implements Serializable {
 	public String id;
 	public PublicKey destinatario; //also known as the new owner of these coins.
 	public float valor; //the amount of coins they own

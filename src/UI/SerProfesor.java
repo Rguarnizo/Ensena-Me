@@ -5,6 +5,10 @@
  */
 package UI;
 
+import static Logic.Crud.guardarBloques;
+import static Logic.Crud.guardarProfesores;
+import static Logic.Crud.guardarUsuarios;
+
 /**
  *
  * @author Ruben Dario Guarnizo
@@ -56,6 +60,7 @@ public class SerProfesor extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1ActionPerformed(evt);
@@ -63,6 +68,7 @@ public class SerProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 70, 70));
 
+        btnRegistrarProfe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarProfe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarProfeActionPerformed(evt);
@@ -70,6 +76,7 @@ public class SerProfesor extends javax.swing.JFrame {
         });
         getContentPane().add(btnRegistrarProfe, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 250, 70));
 
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -99,8 +106,16 @@ public class SerProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarProfeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+        System.out.println("Guardando Usuarios...");
+        guardarUsuarios();
+        System.out.println("Los Usuarios se han guardado con exito ");
+        System.out.println("Guardando Profesores...");
+        guardarProfesores();
+        System.out.println("Los Profesores se han guardado con exito");
+        System.out.println("Guardando Blockchain...");
+        guardarBloques();
+        System.out.println("BlockchainGuardado Exitosamente");
+       
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 

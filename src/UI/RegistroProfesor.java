@@ -5,6 +5,9 @@
  */
 package UI;
 
+import static Logic.Crud.guardarBloques;
+import static Logic.Crud.guardarProfesores;
+import static Logic.Crud.guardarUsuarios;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -73,6 +76,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnSerProfesor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSerProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSerProfesorActionPerformed(evt);
@@ -83,6 +87,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 190, 30));
         getContentPane().add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 190, 30));
 
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
@@ -93,6 +98,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         cbxMateria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ciencias exactas", "Ciencias medicas", "Ciencias humanas", "Ciencias naturales" }));
         getContentPane().add(cbxMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
 
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -175,7 +181,16 @@ public class RegistroProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      System.out.println("Guardando Usuarios...");
+        guardarUsuarios();
+        System.out.println("Los Usuarios se han guardado con exito ");
+        System.out.println("Guardando Profesores...");
+        guardarProfesores();
+        System.out.println("Los Profesores se han guardado con exito");
+        System.out.println("Guardando Blockchain...");
+        guardarBloques();
+        System.out.println("BlockchainGuardado Exitosamente");
+       
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 

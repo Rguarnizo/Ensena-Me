@@ -23,7 +23,7 @@ public class Login {
         if (listaUsuarios.containsKey(correo) == false) {
             return false;
         } else if (listaUsuarios.get(correo).getContraseña().equals(contraseña)) {
-            usuarioLogeado= correo;
+            usuarioLogeado = correo;
             return true;
         }
         else

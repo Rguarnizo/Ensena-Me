@@ -5,20 +5,23 @@
  */
 package Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Ruben Dario Guarnizo
  */
-public class Usuario extends Persona {
+public class Usuario extends Persona implements Serializable {
 
     private String carrera;
     private int semestre;
     private String facultad;
     private ArrayList<Clase> listaClases;
     private boolean esProfesor;
-    public Monedero monedero;
+    public Monedero monedero = new Monedero();
+    
+    
     public Usuario() {
     }
 
@@ -31,6 +34,15 @@ public class Usuario extends Persona {
         this.esProfesor = esProfesor;
         monedero=new Monedero();
     }
+
+    public Monedero getMonedero() {
+        return monedero;
+    }
+
+    public void setMonedero(Monedero monedero) {
+        this.monedero = monedero;
+    }
+    
 
 
     public String getCarrera() {
@@ -105,10 +117,11 @@ public class Usuario extends Persona {
 
     @Override
     public String toString() {
-        return "{" + " carrera='" + getCarrera() + "'" + ", semestre='" + getSemestre() + "'" + ", facultad='"
-                + getFacultad() + "'" + ", listaClases='" + getListaClases() + "'" + ", esProfesor='" + isEsProfesor()
-                + "'" + "}";
+        return " Usuario: " + this.getCorreo() + " Contraseña: " +  this.getContraseña() +" Nombre: " + this.getNombre() +" facultad: " + this.getFacultad() + "  Balance EduCoins: " + this.monedero.getBalance();
     }
+
+
+   
 
     public void crearEstudiante() {
             

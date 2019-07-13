@@ -5,7 +5,9 @@ import Data.Monedero;
 import Data.Transaccion;
 import Data.TransaccionEntrada;
 import Data.TransaccionSaliente;
-import java.security.Security;
+import static Logic.Crud.guardarBloques;
+import static Logic.Crud.guardarProfesores;
+import static Logic.Crud.guardarUsuarios;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.Image;
@@ -154,6 +156,7 @@ public class EduPay extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1ActionPerformed(evt);
@@ -161,22 +164,29 @@ public class EduPay extends javax.swing.JFrame {
         });
         getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 190, 50));
 
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-              
+                
             }
         });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
+
+        btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
 
+        btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn4ActionPerformed(evt);
             }
         });
         getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 200, 50));
+
+        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 200, 50));
 
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -184,6 +194,7 @@ public class EduPay extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 40, 40));
 
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -214,9 +225,18 @@ public class EduPay extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Guardando Usuarios...");
+        guardarUsuarios();
+        System.out.println("Los Usuarios se han guardado con exito ");
+        System.out.println("Guardando Profesores...");
+        guardarProfesores();
+        System.out.println("Los Profesores se han guardado con exito");
+        System.out.println("Guardando Blockchain...");
+        guardarBloques();
+        System.out.println("BlockchainGuardado Exitosamente");
+       
+        System.exit(0);
         
-           System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

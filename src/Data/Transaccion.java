@@ -1,20 +1,21 @@
 package Data;
 
 import UI.EduPay;
+import java.io.Serializable;
 import java.security.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Transaccion {
+public class Transaccion implements Serializable {
 	
 	public String transaccionId; //Contiene hash transaccion
 	public PublicKey remitente; 
 	public PublicKey destinatario;
 	public float valor;
-	public byte[] Firma; //ID firma que impide que otras personas gasten los fondos
+        public byte[] Firma; //ID firma que impide que otras personas gasten los fondos
 	public ArrayList<TransaccionEntrada> entradas = new ArrayList<>();
 	public ArrayList<TransaccionSaliente> salidas = new ArrayList<>();
-	private static int contador = 0; //Contador transacciones realizadas 
+	transient private static int contador = 0; //Contador transacciones realizadas 
 	
 	// Constructor: 
 	public Transaccion(PublicKey de, PublicKey para, float valor,  ArrayList<TransaccionEntrada> entradas) {

@@ -5,12 +5,15 @@
  */
 package UI;
 
-import Data.Bloque;
+
 import Data.Usuario;
-import static UI.EduPay.añadirBloque;
-import static UI.EduPay.blockchain;
-import static UI.EduPay.monederoA;
-import static UI.Registro.correo;
+import static Logic.Crud.guardarBloques;
+import static Logic.Crud.guardarProfesores;
+import static Logic.Crud.guardarUsuarios;
+import static UI.Login.correo;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,9 +46,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
     private void botonesTransparentes() {
 
-        btnEliminar.setOpaque(false);
-        btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setBorderPainted(false);
+        btnModificar.setOpaque(false);
+        btnModificar.setContentAreaFilled(false);
+        btnModificar.setBorderPainted(false);
 
         btnAtras.setOpaque(false);
         btnAtras.setContentAreaFilled(false);
@@ -54,6 +57,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
+        
+        btnEliminar.setOpaque(false);
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setBorderPainted(false);
 
     }
     
@@ -76,7 +83,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnEliminar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
@@ -85,7 +92,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtFacultad = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
-        btnRegistrar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -94,12 +101,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 160, 70));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 160, 60));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 240, 30));
         getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 240, 30));
         getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 200, 30));
@@ -115,13 +123,15 @@ public class ModificarUsuario extends javax.swing.JFrame {
         getContentPane().add(txtFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 180, 30));
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 200, 30));
 
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 150, 60));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 160, 60));
 
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -129,6 +139,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 70, 60));
 
+        btnAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
@@ -145,11 +156,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        new Login().setVisible(true);
+        new MenuPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (camposVacios()) {
             JOptionPane.showMessageDialog(rootPane,"Tiene campos vacios, verifique","Error", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -163,12 +174,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
             String facultad = txtFacultad.getText();
             correo = txtCorreo.getText();
             String contraseña = txtContraseña.getText();
-            Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
-            /////////////
+            try {
+                Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
+            } catch (IOException ex) {
+                Logger.getLogger(ModificarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            /*
+            Bloque nuevo en modificar usuario no se genera.
             Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
             block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
             añadirBloque(block1);
-            ///////////////
+           */
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
             
             
@@ -176,21 +192,36 @@ public class ModificarUsuario extends javax.swing.JFrame {
             dispose();
         }
 
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void txtFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacultadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFacultadActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      System.out.println("Guardando Usuarios...");
+        guardarUsuarios();
+        System.out.println("Los Usuarios se han guardado con exito ");
+        System.out.println("Guardando Profesores...");
+        guardarProfesores();
+        System.out.println("Los Profesores se han guardado con exito");
+        System.out.println("Guardando Blockchain...");
+        guardarBloques();
+        System.out.println("BlockchainGuardado Exitosamente");
+       
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+          
+            String correoAEliminar = txtCorreo.getText();
+            
+            Logic.Login.listaUsuarios.remove(correoAEliminar);
+            
+            new Login().setVisible(true);
+            dispose();
         
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,7 +264,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtApellido;

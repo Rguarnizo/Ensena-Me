@@ -5,10 +5,19 @@
  */
 package Logic;
 
+import Data.Bloque;
 import Data.Profesor;
 import Data.Usuario;
+import static Logic.Login.listaUsuarios;
+import static UI.EduPay.blockchain;
+import java.io.FileNotFoundException;
+import java.io.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
@@ -19,11 +28,13 @@ import javax.swing.table.TableModel;
 public class Crud {
     
     public static ArrayList<Profesor> listaProfesores = new ArrayList<>();
-
-    public static void registrarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad)
-    {
+    
+    public static void registrarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad) throws IOException
+    {          
         Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, null, false));
+        
     }
+    
     public static void registrarProfesor(String materiaDictada, double cobroPorHora, String correo, String contraseña, TableModel horario)
     {
        Usuario usuario = new Usuario();
@@ -31,5 +42,50 @@ public class Crud {
        Profesor profesor = new Profesor(usuario,materiaDictada,cobroPorHora,null,horario,usuario.getNombre(),usuario.getApellido(),"null",contraseña,correo,usuario.getTelefono());
        profesor.getUsuario().setEsProfesor(true);
        listaProfesores.add( profesor);
+    }
+    
+    public static void guardarUsuarios(){
+        
+       try {
+            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("Usuarios.txt"));
+            salida.writeObject(listaUsuarios);
+            for (Usuario usu : listaUsuarios.values()) {
+                System.out.println("Ha sido guardado el usuario: " + usu.getCorreo());
+           }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void guardarProfesores(){
+        
+         try {
+            ObjectOutputStream salidaProfesores = new ObjectOutputStream(new FileOutputStream("Profesores.txt"));
+            salidaProfesores.writeObject(listaProfesores);
+            for (Profesor profe : listaProfesores) {
+            System.out.println("Se ha guardado el profesor: " +  profe.getUsuario());
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void guardarBloques(){
+        try {
+            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.txt"));
+            salidaBloques.writeObject(blockchain);
+            for (Bloque bloque : blockchain) {
+                System.out.println(bloque.toString());
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 }

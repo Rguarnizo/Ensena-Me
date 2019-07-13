@@ -1,6 +1,8 @@
 package Data;
 
-public class TransaccionEntrada {
+import java.io.Serializable;
+
+public class TransaccionEntrada implements Serializable {
 	public String idTransaccionSalida;
 	public TransaccionSaliente UTXO; //Contiene transacciones no gastadas
 	

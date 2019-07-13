@@ -5,6 +5,7 @@
  */
 package Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.table.TableModel;
@@ -13,7 +14,7 @@ import javax.swing.table.TableModel;
  *
  * @author Ruben Dario Guarnizo
  */
-public class Profesor extends Persona {
+public class Profesor extends Persona implements Serializable {
     
     private Usuario usuario;
     private String materiaDictada;

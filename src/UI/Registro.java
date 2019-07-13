@@ -6,9 +6,15 @@
 package UI;
 
 import Data.Bloque;
+import static Logic.Crud.guardarBloques;
+import static Logic.Crud.guardarProfesores;
+import static Logic.Crud.guardarUsuarios;
 import static UI.EduPay.añadirBloque;
 import static UI.EduPay.blockchain;
 import static UI.EduPay.monederoA;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Ruben Dario Guarnizo
  */
 public class Registro extends javax.swing.JFrame {
-    static String correo;
+    
     /**
      * Creates new form Login
      */
@@ -100,6 +106,7 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().add(txtFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 180, 30));
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 200, 30));
 
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -107,6 +114,7 @@ public class Registro extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 70, 60));
 
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
@@ -139,12 +147,16 @@ public class Registro extends javax.swing.JFrame {
             String carrera = txtCarrera.getText();
             int semestre = Integer.parseInt(txtSemestre.getText());
             String facultad = txtFacultad.getText();
-            correo = txtCorreo.getText();
+            String correo = txtCorreo.getText();
             String contraseña = txtContraseña.getText();
-            Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
+            try {
+                Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
+            } catch (IOException ex) {
+                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            }
             /////////////
             Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
-            block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
+            block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 10));
             añadirBloque(block1);
             ///////////////
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -161,7 +173,16 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFacultadActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Guardando Usuarios...");
+        guardarUsuarios();
+        System.out.println("Los Usuarios se han guardado con exito ");
+        System.out.println("Guardando Profesores...");
+        guardarProfesores();
+        System.out.println("Los Profesores se han guardado con exito");
+        System.out.println("Guardando Blockchain...");
+        guardarBloques();
+        System.out.println("BlockchainGuardado Exitosamente");
+       
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 

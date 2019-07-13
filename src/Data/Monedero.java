@@ -1,6 +1,7 @@
 package Data;
 
 import UI.EduPay;
+import java.io.Serializable;
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;
 import java.util.ArrayList;
@@ -8,14 +9,23 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
-public class Monedero {
-	public PrivateKey llavePrivada;
+public class Monedero implements Serializable {
+	public PrivateKey llavePrivada; 
 	public PublicKey llavePublica;
 	public HashMap<String,TransaccionSaliente> UTXOs = new HashMap<>();
+        private float balance;
 	
 	public Monedero() {
 		generarLlaves();
 	}
+
+        public float getBalance() {
+            return balance;
+        }
+
+        public void setBalance(float balance) {
+            this.balance = balance;
+        }
 		
 	public void generarLlaves() {
 		try {
@@ -40,6 +50,7 @@ public class Monedero {
             	total += UTXO.valor ; 
             }
         }
+                this.balance = total;
 		return total;
 	}
 	

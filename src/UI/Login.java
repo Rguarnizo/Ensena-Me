@@ -7,14 +7,31 @@ package UI;
 
 import Data.Bloque;
 import Data.Monedero;
+import Data.Profesor;
 import Data.Transaccion;
 import Data.TransaccionSaliente;
+import Data.Usuario;
+
+import Logic.Crud;
+import static Logic.Crud.guardarBloques;
+import static Logic.Crud.guardarProfesores;
+import static Logic.Crud.guardarUsuarios;
+import static Logic.Login.listaUsuarios;
 import static UI.EduPay.UTXOs;
 import static UI.EduPay.añadirBloque;
 import static UI.EduPay.blockchain;
 import static UI.EduPay.bloqueGenesis;
 import static UI.EduPay.monederoA;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.*;
+import java.io.ObjectInputStream;
 import java.security.Security;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -24,17 +41,21 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    static String correo;
+    
     public Login() {
+        
         initComponents();
 
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        
     }
 
-    public void botonesTransparentes() {
+/**
+     * Creates new form Login
+     */
+        public void botonesTransparentes() {
 
         btn1.setOpaque(false);
         btn1.setContentAreaFilled(false);
@@ -116,7 +137,19 @@ public class Login extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-
+        
+       
+       
+        System.out.println("Guardando Usuarios...");
+        guardarUsuarios();
+        System.out.println("Los Usuarios se han guardado con exito ");
+        System.out.println("Guardando Profesores...");
+        guardarProfesores();
+        System.out.println("Los Profesores se han guardado con exito");
+        System.out.println("Guardando Blockchain...");
+        guardarBloques();
+        System.out.println("BlockchainGuardado Exitosamente");
+       
         System.exit(0);
     }//GEN-LAST:event_btn1ActionPerformed
 
@@ -129,7 +162,7 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
 
-        String correo = txtUsuario.getText();
+        correo = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         if (camposVacios()) {
             JOptionPane.showMessageDialog(rootPane, "Campos vacios, verifique", "Error", JOptionPane.WARNING_MESSAGE);
@@ -148,7 +181,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws FileNotFoundException, IOException, ClassNotFoundException {
         /* Set the Nimbus look and feel */
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Api criptografia como proveedor de seguridad
         Monedero monederoCentral = new Monedero();
@@ -160,7 +193,33 @@ public class Login extends javax.swing.JFrame {
 	UTXOs.put(bloqueGenesis.salidas.get(0).id, bloqueGenesis.salidas.get(0));
 	Bloque genesis = new Bloque("0");
 	genesis.añadirTransaccion(bloqueGenesis);
-        añadirBloque(genesis);        
+        añadirBloque(genesis);  
+        ////////////////////////////////////////////////
+        /////////////////////////////////!!!!!!
+        System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
+        try {
+            
+        ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.txt"));
+            listaUsuarios = (TreeMap<String,Usuario>) inputUsers.readObject();
+            inputUsers.close();
+            
+            ObjectInputStream inputProfesores = new ObjectInputStream(new FileInputStream("Profesores.txt"));
+            Logic.Crud.listaProfesores = (ArrayList<Profesor>) inputProfesores.readObject();
+            inputProfesores.close();
+            
+            ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.txt"));          
+            blockchain = (ArrayList<Bloque>) inputBloque.readObject();            
+            inputBloque.close();
+                       
+            for (Usuario user : listaUsuarios.values()) {
+                System.out.println(user.toString());
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+         /////////////////////////!!!!!
+        ////////////////////////////////////////////////////////////
 //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -191,7 +250,9 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                
+            new Login().setVisible(true);
+                
             }
         });
     }
