@@ -199,7 +199,7 @@ public class Login extends javax.swing.JFrame {
         ////////////////////////////////////////////////
         /////////////////////////////////!!!!!!
         System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
-        try {
+    /*    try {
             
         ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.txt"));
             listaUsuarios = (TreeMap<String,Usuario>) inputUsers.readObject();
@@ -219,7 +219,7 @@ public class Login extends javax.swing.JFrame {
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        } */
          /////////////////////////!!!!!
         ////////////////////////////////////////////////////////////
 //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

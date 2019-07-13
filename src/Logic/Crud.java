@@ -15,10 +15,8 @@ import java.io.*;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -86,9 +84,8 @@ public class Crud {
         } catch (IOException ex) {
             Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    public static boolean verificarEsProfesor()
-    {
+    }
+        public static boolean verificarEsProfesor(){
         String correo= Login.usuarioLogeado;
         for(Profesor profe : listaProfesores)
         {
@@ -102,4 +99,5 @@ public class Crud {
         }
         return false;
     }
+    
 }

@@ -169,8 +169,8 @@ public class EduPay extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarActionPerformed(evt);
             }
@@ -178,12 +178,7 @@ public class EduPay extends javax.swing.JFrame {
         getContentPane().add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 190, 50));
 
         btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-                btn2ActionPerformed(evt);
-            }
-        });
+       
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
 
         btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
