@@ -143,9 +143,9 @@ public class Registro extends javax.swing.JFrame {
             String contraseña = txtContraseña.getText();
             Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
             /////////////
-            Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
-            block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
-            añadirBloque(block1);
+            Bloque block = new Bloque(blockchain.get(blockchain.size()-1).hash);
+            block.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
+            añadirBloque(block);
             ///////////////
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.INFORMATION_MESSAGE);
             

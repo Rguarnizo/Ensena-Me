@@ -23,7 +23,7 @@ import javax.swing.UIManager;
  * @author Ruben Dario Guarnizo
  */
 public class Login extends javax.swing.JFrame {
-
+    static String correo;
     /**
      * Creates new form Login
      */
@@ -129,7 +129,7 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
 
-        String correo = txtUsuario.getText();
+        correo = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         if (camposVacios()) {
             JOptionPane.showMessageDialog(rootPane, "Campos vacios, verifique", "Error", JOptionPane.WARNING_MESSAGE);
