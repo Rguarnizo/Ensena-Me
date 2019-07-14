@@ -6,6 +6,7 @@
 package Logic;
 
 import Data.Bloque;
+import Data.Clase;
 import Data.Profesor;
 import Data.Usuario;
 import static Logic.Login.listaUsuarios;
@@ -29,7 +30,7 @@ public class Crud {
     
     public static void registrarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad) throws IOException
     {          
-        Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, null, false));
+        Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, new ArrayList<>(), false));
         
     }
     
@@ -37,7 +38,7 @@ public class Crud {
     {
        Usuario usuario = new Usuario();
        usuario = Logic.Login.listaUsuarios.get(correo);
-       Profesor profesor = new Profesor(usuario,materiaDictada,cobroPorHora,null,horario,usuario.getNombre(),usuario.getApellido(),"null",contraseña,correo,usuario.getTelefono());
+       Profesor profesor = new Profesor(usuario,materiaDictada,cobroPorHora,new ArrayList<>(),horario,usuario.getNombre(),usuario.getApellido(),"null",contraseña,correo,usuario.getTelefono());
        profesor.getUsuario().setEsProfesor(true);
        listaProfesores.add( profesor);
     }
@@ -45,7 +46,7 @@ public class Crud {
     public static void guardarUsuarios(){
         
        try {
-            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("Usuarios.txt"));
+            ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("Usuarios.obj"));
             salida.writeObject(listaUsuarios);
             for (Usuario usu : listaUsuarios.values()) {
                 System.out.println("Ha sido guardado el usuario: " + usu.getCorreo());
@@ -60,7 +61,7 @@ public class Crud {
     public static void guardarProfesores(){
         
          try {
-            ObjectOutputStream salidaProfesores = new ObjectOutputStream(new FileOutputStream("Profesores.txt"));
+            ObjectOutputStream salidaProfesores = new ObjectOutputStream(new FileOutputStream("Profesores.obj"));
             salidaProfesores.writeObject(listaProfesores);
             for (Profesor profe : listaProfesores) {
             System.out.println("Se ha guardado el profesor: " +  profe.getUsuario());
@@ -74,7 +75,7 @@ public class Crud {
     
     public static void guardarBloques(){
         try {
-            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.txt"));
+            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.obj"));
             salidaBloques.writeObject(blockchain);
             for (Bloque bloque : blockchain) {
                 System.out.println(bloque.toString());
@@ -85,7 +86,9 @@ public class Crud {
             Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        public static boolean verificarEsProfesor(){
+        
+    
+    public static boolean verificarEsProfesor(){
         String correo= Login.usuarioLogeado;
         for(Profesor profe : listaProfesores)
         {

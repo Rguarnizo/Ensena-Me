@@ -5,9 +5,14 @@
  */
 package UI;
 
+import Data.Clase;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
+import static Logic.Login.listaUsuarios;
+import static UI.Login.correo;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +27,32 @@ public class VerClase extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        definirTablaClases();
+        
+    }
+    
+    
+    private void definirTablaClases(){
+        
+        
+        ArrayList<Clase> listaClases  = listaUsuarios.get(correo).getListaClases();
+        
+        if(listaClases.isEmpty()){
+            System.out.println("No hay clases");
+        }else{
+        
+            DefaultTableModel modelo = new DefaultTableModel();
+        
+            modelo.addColumn("Nombre Profesor");
+            modelo.addColumn("Lugar/Sitio");
+            modelo.addColumn("Fecha");
+        for (Clase clas : listaClases) {
+            String[] fila = {clas.getProfesorQueDicta().getNombre(),clas.getLugar(),clas.getFecha().toString()};
+            modelo.addRow(fila);
+        }
+        jTable1.setModel(modelo);
+        }
+           
     }
     
     public void botonesTransparentes(){
@@ -123,18 +154,26 @@ public class VerClase extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Lugar", "Hora"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, -1, 180));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 220, 480, 190));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Ver_clases.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -181,7 +220,7 @@ public class VerClase extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());

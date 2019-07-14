@@ -5,7 +5,9 @@
  */
 package UI;
 
+import static Logic.Crud.verificarEsProfesor;
 import static UI.Login.correo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -186,8 +188,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
-        new VerTutoria().setVisible(true);
-        dispose();
+        if(verificarEsProfesor()){
+            new VerTutoria().setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Aun no eres profesor, animate a enseñar!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
@@ -217,6 +223,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -5,9 +5,17 @@
  */
 package UI;
 
+import Data.Clase;
+import Data.Profesor;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
+import static Logic.Crud.listaProfesores;
+import static Logic.Crud.verificarEsProfesor;
+import static Logic.Login.listaUsuarios;
+import static UI.Login.correo;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +30,36 @@ public class VerTutoria extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        definirTablaClases();
+    }
+    private void definirTablaClases(){
+        
+        ArrayList<Clase> listaClases = null;
+        
+        for(Profesor profe : listaProfesores)
+        {
+            if(profe.getUsuario().getCorreo().equals(correo))
+            {
+                listaClases = profe.getListaClases();
+            }
+        }      
+                
+                    
+        if(verificarEsProfesor() == false){
+            System.out.println("No Eres Profesor Aun!");
+        }else{
+        
+            DefaultTableModel modelo = new DefaultTableModel();
+        
+            modelo.addColumn("Nombre Alumno");
+            modelo.addColumn("Lugar/Sitio");
+            modelo.addColumn("Fecha");
+        for (Clase clas : listaClases) {
+            String[] fila = {clas.getEstudianteQueRecibe().getNombre(),clas.getLugar(),clas.getFecha().toString()};
+            modelo.addRow(fila);
+        }
+        jTable1.setModel(modelo);
+        }
     }
     
     public void botonesTransparentes(){
@@ -74,6 +112,8 @@ public class VerTutoria extends javax.swing.JFrame {
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +166,29 @@ public class VerTutoria extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(733, 10, 60, 60));
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre", "Lugar", "Hora"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 220, 480, 190));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Ver_Tutorias.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 540));
@@ -175,7 +238,7 @@ public class VerTutoria extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -213,5 +276,7 @@ public class VerTutoria extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -201,15 +201,15 @@ public class Login extends javax.swing.JFrame {
         System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
         try {
             
-        ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.txt"));
+            ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.obj"));
             listaUsuarios = (TreeMap<String,Usuario>) inputUsers.readObject();
             inputUsers.close();
             
-            ObjectInputStream inputProfesores = new ObjectInputStream(new FileInputStream("Profesores.txt"));
+            ObjectInputStream inputProfesores = new ObjectInputStream(new FileInputStream("Profesores.obj"));
             Logic.Crud.listaProfesores = (ArrayList<Profesor>) inputProfesores.readObject();
             inputProfesores.close();
             
-            ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.txt"));          
+            ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.obj"));          
             blockchain = (ArrayList<Bloque>) inputBloque.readObject();            
             inputBloque.close();
                        
@@ -220,12 +220,17 @@ public class Login extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } 
-         /////////////////////////!!!!!
+         
+
+        /////////////////////////!!!!!
         ////////////////////////////////////////////////////////////
-//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         */ 
+        
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -248,8 +253,8 @@ public class Login extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        /* Create and display the form */
+        } */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
