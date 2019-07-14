@@ -5,7 +5,6 @@
  */
 package UI;
 
-
 import Data.Profesor;
 import Data.Usuario;
 import Logic.Crud;
@@ -24,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author Ruben Dario Guarnizo
  */
 public class ModificarUsuario extends javax.swing.JFrame {
-   
+
     /**
      * Creates new form Login
      */
@@ -32,7 +31,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
-        
+
         Usuario usuarioActual = Logic.Login.listaUsuarios.get(correo);
         txtNombre.setText(usuarioActual.getNombre());
         txtApellido.setText(usuarioActual.getApellido());
@@ -43,8 +42,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         txtCorreo.setText(usuarioActual.getCorreo());
         txtContraseña.setText(usuarioActual.getContraseña());
         txtCorreo.setEditable(false);
-        
-        
+
     }
 
     private void botonesTransparentes() {
@@ -56,25 +54,23 @@ public class ModificarUsuario extends javax.swing.JFrame {
         btnAtras.setOpaque(false);
         btnAtras.setContentAreaFilled(false);
         btnAtras.setBorderPainted(false);
-        
+
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
-        
+
         btnEliminar.setOpaque(false);
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setBorderPainted(false);
 
     }
-    
-    private boolean camposVacios()
-    {
-        if(txtApellido.getText().isEmpty() || txtCarrera.getText().isEmpty() || txtContraseña.getText().isEmpty() || txtCorreo.getText().isEmpty() || txtFacultad.getText().isEmpty() || txtNombre.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTelefono.getText().isEmpty())
-        {
+
+    private boolean camposVacios() {
+        if (txtApellido.getText().isEmpty() || txtCarrera.getText().isEmpty() || txtContraseña.getText().isEmpty() || txtCorreo.getText().isEmpty() || txtFacultad.getText().isEmpty() || txtNombre.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -165,10 +161,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (camposVacios()) {
-            JOptionPane.showMessageDialog(rootPane,"Tiene campos vacios, verifique","Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Tiene campos vacios, verifique", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            
-            
+
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
             long telefono = Long.parseLong(txtTelefono.getText());
@@ -183,14 +178,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 Logger.getLogger(ModificarUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             /*
-            Bloque nuevo en modificar usuario no se genera.
-            Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
-            block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
-            añadirBloque(block1);
-           */
-            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.OK_OPTION);
-            
-            
+             Bloque nuevo en modificar usuario no se genera.
+             Bloque block1 = new Bloque(blockchain.get(blockchain.size()-1).hash);
+             block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
+             añadirBloque(block1);
+             */
+            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito", "Exito", JOptionPane.OK_OPTION);
+
             new MenuPrincipal().setVisible(true);
             dispose();
         }
@@ -202,7 +196,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFacultadActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      System.out.println("Guardando Usuarios...");
+        System.out.println("Guardando Usuarios...");
         guardarUsuarios();
         System.out.println("Los Usuarios se han guardado con exito ");
         System.out.println("Guardando Profesores...");
@@ -211,26 +205,27 @@ public class ModificarUsuario extends javax.swing.JFrame {
         System.out.println("Guardando Blockchain...");
         guardarBloques();
         System.out.println("BlockchainGuardado Exitosamente");
-       
+
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-            int eliminar=0;
-            String correoAEliminar = txtCorreo.getText();
-            for(int i=0; i< Logic.Crud.listaProfesores.size();i++)
-                {
-                    if(Crud.listaProfesores.get(i).getCorreo().equals(correoAEliminar))
-                    {
-                        eliminar=i;
-                    }
+        int eliminar = 0;
+        String correoAEliminar = txtCorreo.getText();
+        if (Logic.Login.listaUsuarios.get(correoAEliminar).getEsProfesor()) {
+            for (int i = 0; i < Logic.Crud.listaProfesores.size(); i++) {
+                if (Crud.listaProfesores.get(i).getCorreo().equals(correoAEliminar)) {
+                    eliminar = i;
                 }
+            }
             Logic.Crud.listaProfesores.remove(eliminar);
-            Logic.Login.listaUsuarios.remove(correoAEliminar);
-            
-            new Login().setVisible(true);
-            dispose();
-        
+        }
+
+        Logic.Login.listaUsuarios.remove(correoAEliminar);
+
+        new Login().setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
@@ -243,27 +238,27 @@ public class ModificarUsuario extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+         if ("Nimbus".equals(info.getName())) {
+         javax.swing.UIManager.setLookAndFeel(info.getClassName());
+         break;
+         }
+         }
+         } catch (ClassNotFoundException ex) {
+         java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (InstantiationException ex) {
+         java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (IllegalAccessException ex) {
+         java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+         java.util.logging.Logger.getLogger(ModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         }
+         //</editor-fold>
+         //</editor-fold>
+         //</editor-fold>
+         //</editor-fold>
 
-        /* Create and display the form */
+         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ModificarUsuario().setVisible(true);

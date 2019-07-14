@@ -202,19 +202,19 @@ public class Login extends javax.swing.JFrame {
         System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
         try {
             
-            
+        
             ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.txt"));
             listaUsuarios = (TreeMap<String,Usuario>) inputUsers.readObject();
             inputUsers.close();
             
-            ObjectInputStream inputProfesores = new ObjectInputStream(new FileInputStream("Profesores.obj"));
+            ObjectInputStream inputProfesores = new ObjectInputStream(new FileInputStream("Profesores.txt"));
             Logic.Crud.listaProfesores = (ArrayList<Profesor>) inputProfesores.readObject();
             inputProfesores.close();
             
-            ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.obj"));          
+            ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.txt"));          
             blockchain = (ArrayList<Bloque>) inputBloque.readObject();            
             inputBloque.close();
-                
+             
             for (Usuario user : listaUsuarios.values()) {
                 System.out.println(user.toString());
             }
