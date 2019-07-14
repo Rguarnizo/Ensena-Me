@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Ruben Dario Guarnizo
  */
 public class Registro extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Login
      */
@@ -42,21 +42,19 @@ public class Registro extends javax.swing.JFrame {
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
         btn2.setBorderPainted(false);
-        
+
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
 
     }
-    
-    private boolean camposVacios()
-    {
-        if(txtApellido.getText().isEmpty() || txtCarrera.getText().isEmpty() || txtContraseña.getText().isEmpty() || txtCorreo.getText().isEmpty() || txtFacultad.getText().isEmpty() || txtNombre.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTelefono.getText().isEmpty())
-        {
+
+    private boolean camposVacios() {
+        if (txtApellido.getText().isEmpty() || txtCarrera.getText().isEmpty() || txtContraseña.getText().isEmpty() || txtCorreo.getText().isEmpty() || txtFacultad.getText().isEmpty() || txtNombre.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -137,10 +135,11 @@ public class Registro extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (camposVacios()) {
-            JOptionPane.showMessageDialog(rootPane,"Tiene campos vacios, verifique","Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Tiene campos vacios, verifique", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if (Logic.Crud.usuarioRegistrado(txtCorreo.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "El usuario ingresado ya esta registrado", "El usuario ya existe", JOptionPane.ERROR_MESSAGE);
         } else {
-            
-            
+
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
             long telefono = Long.parseLong(txtTelefono.getText());
@@ -155,13 +154,12 @@ public class Registro extends javax.swing.JFrame {
                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
             /////////////
-            Bloque block = new Bloque(blockchain.get(blockchain.size()-1).hash);
+            Bloque block = new Bloque(blockchain.get(blockchain.size() - 1).hash);
             block.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
             añadirBloque(block);
             ///////////////
-            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito","Exito", JOptionPane.INFORMATION_MESSAGE);
-            
-            
+            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
             new Login().setVisible(true);
             dispose();
         }
@@ -182,7 +180,7 @@ public class Registro extends javax.swing.JFrame {
         System.out.println("Guardando Blockchain...");
         guardarBloques();
         System.out.println("BlockchainGuardado Exitosamente");
-       
+
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 

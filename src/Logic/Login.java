@@ -8,6 +8,7 @@ package Logic;
 import Data.Clase;
 import Data.Usuario;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeMap;
 
 /**
@@ -15,7 +16,7 @@ import java.util.TreeMap;
  * @author Ruben Dario Guarnizo
  */
 public class Login {
-    
+
     public static String usuarioLogeado;
     public static TreeMap<String, Usuario> listaUsuarios = new TreeMap<>();
 
@@ -25,17 +26,17 @@ public class Login {
         } else if (listaUsuarios.get(correo).getContraseña().equals(contraseña)) {
             usuarioLogeado = correo;
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
-    public static boolean verificarSesion(String correo, String contraseña)
-    {
-        if(usuarioLogeado.equals(correo) && listaUsuarios.get(correo).getContraseña().equals(contraseña))
-        {
+
+
+    public static boolean verificarSesion(String correo, String contraseña) {
+        if (usuarioLogeado.equals(correo) && listaUsuarios.get(correo).getContraseña().equals(contraseña)) {
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 }

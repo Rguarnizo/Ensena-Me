@@ -10,6 +10,7 @@ import Data.Profesor;
 import Data.Usuario;
 import java.io.Serializable;
 import java.util.Date;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -29,7 +30,10 @@ public class PedirClase implements Serializable {
         profesorQueDicta.getListaClases().add(clase);
         usuarioQueRecibe.getListaClases().add(clase);
         System.out.println(clase.toString());
-        
-        
+                       
+    }
+    public static void actualizarHorario(Profesor profesorQueDicta, TableModel horario)
+    {
+        profesorQueDicta.setHorario(horario);
     }
 }

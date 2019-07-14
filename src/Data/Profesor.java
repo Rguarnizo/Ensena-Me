@@ -92,6 +92,12 @@ public class Profesor extends Persona implements Serializable {
         
         this.horario = (TableModel) horarioExportado;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Nombre: "+getNombre()+", "+"Apellido:"+getApellido()+", "+"Materia que dicta: "+getMateriaDictada()+", "+"Cobro por hora: "+getCobroPorHora();
+    }
     
 
     
