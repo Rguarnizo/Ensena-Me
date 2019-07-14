@@ -252,6 +252,8 @@ public class PedirClase extends javax.swing.JFrame {
         if (evt.getClickCount() == 1) {
             Profesor profesor = new Profesor();
             profesor = (Profesor) lstProfesores.getSelectedValue();
+            profesor.toString();
+            profesor.transformarModeloTabla();           
             tblHorario.setModel(profesor.getHorario());
         }
     }//GEN-LAST:event_lstProfesoresMouseClicked

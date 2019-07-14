@@ -5,13 +5,14 @@
  */
 package Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Ruben Dario Guarnizo
  */
-public class Clase {
+public class Clase implements Serializable {
 
     private Date fecha;
     private String lugar ;

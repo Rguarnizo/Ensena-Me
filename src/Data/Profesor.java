@@ -8,6 +8,7 @@ package Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -20,7 +21,8 @@ public class Profesor extends Persona implements Serializable {
     private String materiaDictada;
     private double cobroPorHora;
     private ArrayList<Clase> listaClases ;
-    private TableModel horario;
+    transient private TableModel horario;
+    private DefaultTableModel horarioExportado;
 
     public Profesor(Usuario usuario, String materiaDictada, double cobroPorHora, ArrayList<Clase> listaClases, TableModel horario, String nombre, String apellido, String direccionMonedero, String contraseña, String correo, long telefono) {
         super(nombre, apellido, direccionMonedero, contraseña, correo, telefono);
@@ -29,8 +31,18 @@ public class Profesor extends Persona implements Serializable {
         this.cobroPorHora = cobroPorHora;
         this.listaClases = listaClases;
         this.horario = horario;
+        this.horarioExportado = (DefaultTableModel) horario;
     }
 
+    public DefaultTableModel getHorarioExportado() {
+        return horarioExportado;
+    }
+
+    public void setHorarioExportado(DefaultTableModel horarioExportado) {
+        this.horarioExportado = horarioExportado;
+    }
+
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -73,9 +85,13 @@ public class Profesor extends Persona implements Serializable {
     }
 
     public Profesor() {
+        
     }
-
     
+    public void transformarModeloTabla(){
+        
+        this.horario = (TableModel) horarioExportado;
+    }
     
 
     
