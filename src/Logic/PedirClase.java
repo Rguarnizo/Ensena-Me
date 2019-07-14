@@ -28,6 +28,7 @@ public class PedirClase {
         Clase clase = new Clase(fechaCita, lugar, profesorQueDicta, usuarioQueRecibe);
         profesorQueDicta.setListaClases(clase);
         usuarioQueRecibe.setListaClases(clase);
+        System.out.println(clase.toString());
        
     }
     public static void actualizarHorario(Profesor profesorQueDicta, TableModel horario)

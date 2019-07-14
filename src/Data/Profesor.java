@@ -20,7 +20,7 @@ public class Profesor extends Persona implements Serializable {
     private Usuario usuario;
     private String materiaDictada;
     private double cobroPorHora;
-    private ArrayList<Clase> listaClases ;
+    private ArrayList<Clase> listaClases;
     transient private TableModel horario;
     private DefaultTableModel horarioExportado;
 

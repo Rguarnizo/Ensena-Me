@@ -51,6 +51,7 @@ public class Login extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+
         
     }
 

@@ -6,7 +6,9 @@
 package UI;
 
 
+import Data.Profesor;
 import Data.Usuario;
+import Logic.Crud;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
@@ -172,7 +174,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             String carrera = txtCarrera.getText();
             int semestre = Integer.parseInt(txtSemestre.getText());
             String facultad = txtFacultad.getText();
-            correo = txtCorreo.getText();
+            String correo = txtCorreo.getText();
             String contraseña = txtContraseña.getText();
             try {
                 Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
@@ -213,9 +215,16 @@ public class ModificarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-          
+            int eliminar=0;
             String correoAEliminar = txtCorreo.getText();
-            
+            for(int i=0; i< Logic.Crud.listaProfesores.size();i++)
+                {
+                    if(Crud.listaProfesores.get(i).getCorreo().equals(correoAEliminar))
+                    {
+                        eliminar=i;
+                    }
+                }
+            Logic.Crud.listaProfesores.remove(eliminar);
             Logic.Login.listaUsuarios.remove(correoAEliminar);
             
             new Login().setVisible(true);
