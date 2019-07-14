@@ -9,6 +9,7 @@ import Data.Clase;
 import Data.Profesor;
 import Data.Usuario;
 import java.util.Date;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -27,7 +28,10 @@ public class PedirClase {
         Clase clase = new Clase(fechaCita, lugar, profesorQueDicta, usuarioQueRecibe);
         profesorQueDicta.setListaClases(clase);
         usuarioQueRecibe.setListaClases(clase);
-        
-        
+       
+    }
+    public static void actualizarHorario(Profesor profesorQueDicta, TableModel horario)
+    {
+        profesorQueDicta.setHorario(horario);
     }
 }

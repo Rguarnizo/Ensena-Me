@@ -27,15 +27,7 @@ public class PedirClase extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
-        DefaultListModel modelo = new DefaultListModel();
-        for (Profesor profe : Logic.Crud.listaProfesores) {
-            if (!(profe.getUsuario().getCorreo().equals(Logic.Login.usuarioLogeado))) {
-                modelo.addElement(profe);
-            }
-        }
-        lstProfesores.setModel(modelo);
-        //tblHorario.setValueAt(1000, 1,2);
-
+        mostrarProfesores(cbxAreaDeEstudio1.getItemAt(0));
     }
 
     public void botonesTransparentes() {
@@ -70,6 +62,16 @@ public class PedirClase extends javax.swing.JFrame {
 
     }
 
+    private void mostrarProfesores(String areaDeEstudio) {
+        DefaultListModel modelo = new DefaultListModel();
+        for (Profesor profe : Logic.Crud.listaProfesores) {
+            if ((!(profe.getUsuario().getCorreo().equals(Logic.Login.usuarioLogeado))) && (profe.getMateriaDictada().equals(areaDeEstudio))) {
+                modelo.addElement(profe);
+            }
+        }
+        lstProfesores.setModel(modelo);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,11 +89,11 @@ public class PedirClase extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHorario = new javax.swing.JTable();
-        cbxLugar = new javax.swing.JComboBox<>();
+        cbxLugar = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstProfesores = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
-        cbxAreaDeEstudio1 = new javax.swing.JComboBox<>();
+        cbxAreaDeEstudio1 = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -174,7 +176,7 @@ public class PedirClase extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 300, 130));
 
-        cbxLugar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hemeroteca Nacional Universitaria\t", "Biblioteca Central", "Edificio de Ciencia y Tecnologia", "Edificio Julio Garavito", "Torre Central de Informatica", " " }));
+        cbxLugar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hemeroteca Nacional Universitaria\t", "Biblioteca Central", "Edificio de Ciencia y Tecnologia", "Edificio Julio Garavito", "Torre Central de Informatica", " " }));
         getContentPane().add(cbxLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 190, 30));
 
         lstProfesores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,7 +196,12 @@ public class PedirClase extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 70, 60));
 
-        cbxAreaDeEstudio1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencias exactas", "Ciencias naturales", "Ciencias humanas", "Ciencias medicas" }));
+        cbxAreaDeEstudio1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ciencias exactas", "Ciencias naturales", "Ciencias humanas", "Ciencias medicas" }));
+        cbxAreaDeEstudio1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxAreaDeEstudio1ItemStateChanged(evt);
+            }
+        });
         getContentPane().add(cbxAreaDeEstudio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 164, 190, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Pedir_Clase.png"))); // NOI18N
@@ -211,8 +218,14 @@ public class PedirClase extends javax.swing.JFrame {
         if (lstProfesores.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(rootPane, "Primero seleccione un profesor y un horario", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila, columna).toString()), cbxLugar.getSelectedItem().toString(), (Profesor) lstProfesores.getSelectedValue(), Logic.Login.listaUsuarios.get(Logic.Login.usuarioLogeado));
-            JOptionPane.showMessageDialog(rootPane, "Clase creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            if (tblHorario.getValueAt(fila, columna) == null) {
+                JOptionPane.showMessageDialog(rootPane, "Horario invalido, por favor verifique", "Error horario", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila, columna).toString()), cbxLugar.getSelectedItem().toString(), (Profesor) lstProfesores.getSelectedValue(), Logic.Login.listaUsuarios.get(Logic.Login.usuarioLogeado));
+                JOptionPane.showMessageDialog(rootPane, "Clase creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                tblHorario.setValueAt(null, fila, columna);
+                Logic.PedirClase.actualizarHorario((Profesor) lstProfesores.getSelectedValue(), tblHorario.getModel());
+            }
         }
 
 
@@ -243,7 +256,7 @@ public class PedirClase extends javax.swing.JFrame {
         System.out.println("Guardando Blockchain...");
         guardarBloques();
         System.out.println("BlockchainGuardado Exitosamente");
-       
+
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -253,10 +266,14 @@ public class PedirClase extends javax.swing.JFrame {
             Profesor profesor = new Profesor();
             profesor = (Profesor) lstProfesores.getSelectedValue();
             profesor.toString();
-            profesor.transformarModeloTabla();           
+            profesor.transformarModeloTabla();
             tblHorario.setModel(profesor.getHorario());
         }
     }//GEN-LAST:event_lstProfesoresMouseClicked
+
+    private void cbxAreaDeEstudio1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxAreaDeEstudio1ItemStateChanged
+        mostrarProfesores(cbxAreaDeEstudio1.getSelectedItem().toString());
+    }//GEN-LAST:event_cbxAreaDeEstudio1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -267,22 +284,24 @@ public class PedirClase extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        /*
+         try {
+         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+         if ("Nimbus".equals(info.getName())) {
+         javax.swing.UIManager.setLookAndFeel(info.getClassName());
+         break;
+         }
+         }
+         } catch (ClassNotFoundException ex) {
+         java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (InstantiationException ex) {
+         java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (IllegalAccessException ex) {
+         java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+         java.util.logging.Logger.getLogger(PedirClase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         }
+         */
         //</editor-fold>
         //</editor-fold>
 
