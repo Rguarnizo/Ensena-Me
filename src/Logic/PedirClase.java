@@ -8,6 +8,7 @@ package Logic;
 import Data.Clase;
 import Data.Profesor;
 import Data.Usuario;
+import java.io.Serializable;
 import java.util.Date;
 import javax.swing.table.TableModel;
 
@@ -15,7 +16,7 @@ import javax.swing.table.TableModel;
  *
  * @author mateo
  */
-public class PedirClase {
+public class PedirClase implements Serializable {
     
     public static void pedirClase(int hora, String lugar, Profesor profesorQueDicta, Usuario usuarioQueRecibe)
     {
@@ -26,10 +27,11 @@ public class PedirClase {
         
         Date fechaCita= new Date(año,mes,dia,hora,00);
         Clase clase = new Clase(fechaCita, lugar, profesorQueDicta, usuarioQueRecibe);
-        profesorQueDicta.setListaClases(clase);
-        usuarioQueRecibe.setListaClases(clase);
+
+        profesorQueDicta.getListaClases().add(clase);
+        usuarioQueRecibe.getListaClases().add(clase);
         System.out.println(clase.toString());
-       
+                       
     }
     public static void actualizarHorario(Profesor profesorQueDicta, TableModel horario)
     {

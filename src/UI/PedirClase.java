@@ -227,6 +227,8 @@ public class PedirClase extends javax.swing.JFrame {
                 Logic.PedirClase.actualizarHorario((Profesor) lstProfesores.getSelectedValue(), tblHorario.getModel());
             }
         }
+        
+        
 
 
     }//GEN-LAST:event_btnPedirActionPerformed
@@ -269,6 +271,7 @@ public class PedirClase extends javax.swing.JFrame {
             profesor.transformarModeloTabla();
             tblHorario.setModel(profesor.getHorario());
         }
+        
     }//GEN-LAST:event_lstProfesoresMouseClicked
 
     private void cbxAreaDeEstudio1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxAreaDeEstudio1ItemStateChanged

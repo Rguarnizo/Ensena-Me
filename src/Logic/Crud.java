@@ -6,6 +6,7 @@
 package Logic;
 
 import Data.Bloque;
+import Data.Clase;
 import Data.Profesor;
 import Data.Usuario;
 import static Logic.Login.listaUsuarios;
@@ -55,6 +56,7 @@ public class Crud {
         }
     }
 
+
     public static void guardarProfesores() {
 
         try {
@@ -72,7 +74,7 @@ public class Crud {
 
     public static void guardarBloques() {
         try {
-            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.txt"));
+            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.obj"));
             salidaBloques.writeObject(blockchain);
             for (Bloque bloque : blockchain) {
                 System.out.println(bloque.toString());
