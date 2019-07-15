@@ -34,13 +34,13 @@ public class VerTutoria extends javax.swing.JFrame {
     }
     private void definirTablaClases(){
         
-        ArrayList<Clase> listaClases = null;
+        Profesor profesor = null;
         
         for(Profesor profe : listaProfesores)
         {
             if(profe.getUsuario().getCorreo().equals(correo))
             {
-                listaClases = profe.getListaClases();
+                 profesor = profe;
             }
         }      
                 
@@ -54,7 +54,7 @@ public class VerTutoria extends javax.swing.JFrame {
             modelo.addColumn("Nombre Alumno");
             modelo.addColumn("Lugar/Sitio");
             modelo.addColumn("Fecha");
-        for (Clase clas : listaClases) {
+        for (Clase clas : profesor.getListaClases()) {
             String[] fila = {clas.getEstudianteQueRecibe().getNombre(),clas.getLugar(),clas.getFecha().toString()};
             modelo.addRow(fila);
         }

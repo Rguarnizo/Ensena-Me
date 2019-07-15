@@ -167,6 +167,9 @@ public class RegistroProfesor extends javax.swing.JFrame {
                 String contraseña = txtContrasena.getText();
                 Logic.Crud.registrarProfesor(areaADictar, cobroPorHora, correo, contraseña, tblHorario.getModel());
                 JOptionPane.showMessageDialog(rootPane, "Ahora eres profesor", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                
+                new MenuPrincipal().setVisible(true);
+                dispose();
             }
 
         }

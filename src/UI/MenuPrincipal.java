@@ -6,6 +6,7 @@
 package UI;
 
 import static Logic.Crud.verificarEsProfesor;
+import static Logic.Login.listaUsuarios;
 import static UI.Login.correo;
 import javax.swing.JOptionPane;
 
@@ -23,6 +24,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         botonesTransparentes();
         txtSaldo.setText(Float.toString(Logic.Login.listaUsuarios.get(correo).monedero.getBalance()));
+        txtNombre.setText(listaUsuarios.get(correo).getNombre());
+        
     }
     
     public void botonesTransparentes(){
@@ -79,6 +82,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btn6 = new javax.swing.JButton();
         btn7 = new javax.swing.JButton();
         txtSaldo = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,7 +155,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         txtSaldo.setForeground(new java.awt.Color(255, 255, 255));
         txtSaldo.setText("Saldo Cuenta");
-        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 120, 40));
+        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 120, 40));
+
+        txtNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setText("Nombre Usuario");
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 200, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Menu_Principal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -260,6 +269,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel txtNombre;
     private javax.swing.JLabel txtSaldo;
     // End of variables declaration//GEN-END:variables
 }

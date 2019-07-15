@@ -47,7 +47,7 @@ public class Crud {
             ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("Usuarios.txt"));
             salida.writeObject(listaUsuarios);
             for (Usuario usu : listaUsuarios.values()) {
-                System.out.println("Ha sido guardado el usuario: " + usu.getCorreo());
+                System.out.println("Ha sido guardado el usuario: " + usu.getCorreo()+ "Nombre: " +  usu.getNombre() + " Es profesor?  " + usu.getEsProfesor());
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
