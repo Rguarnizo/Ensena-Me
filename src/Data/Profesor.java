@@ -20,16 +20,17 @@ public class Profesor extends Persona implements Serializable {
     private Usuario usuario;
     private String materiaDictada;
     private double cobroPorHora;
-    private ArrayList<Clase> listaClases = new ArrayList();
-    transient private TableModel horario;
-    private DefaultTableModel horarioExportado;
+    private ArrayList<Clase> listaClasesProfesor;
+    private TableModel horario;
+    private DefaultTableModel horarioExportado = (DefaultTableModel) horario;
+
 
     public Profesor(Usuario usuario, String materiaDictada, double cobroPorHora, ArrayList<Clase> listaClases, TableModel horario, String nombre, String apellido, String direccionMonedero, String contraseña, String correo, long telefono) {
         super(nombre, apellido, direccionMonedero, contraseña, correo, telefono);
         this.usuario = usuario;
         this.materiaDictada = materiaDictada;
         this.cobroPorHora = cobroPorHora;
-        this.listaClases = listaClases;
+        this.listaClasesProfesor = listaClases;
         this.horario = horario;
         this.horarioExportado = (DefaultTableModel) horario;
     }
@@ -68,13 +69,14 @@ public class Profesor extends Persona implements Serializable {
     }
 
     public ArrayList<Clase> getListaClases() {
-        return listaClases;
+        return listaClasesProfesor;
     }
 
-    public void setListaClases(Clase cita) {
-        listaClases = new ArrayList<>();
-        listaClases.add(cita);
+    public void setListaClases(ArrayList<Clase> listaClases) {
+        this.listaClasesProfesor = listaClases;
     }
+
+   
 
     public TableModel getHorario() {
         return horario;
@@ -88,10 +90,6 @@ public class Profesor extends Persona implements Serializable {
         
     }
     
-    public void transformarModeloTabla(){
-        
-        this.horario = (TableModel) horarioExportado;
-    }
 
     @Override
     public String toString()

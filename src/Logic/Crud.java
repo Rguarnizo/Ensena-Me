@@ -27,16 +27,20 @@ import javax.swing.table.TableModel;
 public class Crud {
 
     public static ArrayList<Profesor> listaProfesores = new ArrayList<>();
-
+    public static ArrayList<Clase> listaClasesUsuario = new ArrayList<>();
+    public static ArrayList<Clase> listaClasesProfesor = new ArrayList<>();
+    
     public static void registrarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad) throws IOException {
-        Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, new ArrayList<>(), false));
+
+        Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, listaClasesUsuario, false));
 
     }
 
     public static void registrarProfesor(String materiaDictada, double cobroPorHora, String correo, String contraseña, TableModel horario) {
         Usuario usuario = new Usuario();
         usuario = Logic.Login.listaUsuarios.get(correo);
-        Profesor profesor = new Profesor(usuario, materiaDictada, cobroPorHora, new ArrayList<>(), horario, usuario.getNombre(), usuario.getApellido(), "null", contraseña, correo, usuario.getTelefono());
+
+        Profesor profesor = new Profesor(usuario, materiaDictada, cobroPorHora, listaClasesProfesor, horario, usuario.getNombre(), usuario.getApellido(), "null", contraseña, correo, usuario.getTelefono());
         profesor.getUsuario().setEsProfesor(true);
         listaProfesores.add(profesor);
     }

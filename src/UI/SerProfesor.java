@@ -105,7 +105,13 @@ public class SerProfesor extends javax.swing.JFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "Ya eres profesor!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ya eres profesor!", "Eres profesor", JOptionPane.WARNING_MESSAGE);
+            int respuesta=JOptionPane.showConfirmDialog(rootPane, "¿Deseas cambiar tu horario?", "Cambiar horario", JOptionPane.YES_NO_CANCEL_OPTION);
+            if(respuesta==0)
+            {
+                new RegistroProfesor(true).setVisible(true);
+                this.dispose();
+            }
         }
 
     }//GEN-LAST:event_btnRegistrarProfeActionPerformed

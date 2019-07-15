@@ -12,6 +12,7 @@ import static Logic.Crud.guardarUsuarios;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import javax.swing.text.TableView;
 
 /**
@@ -19,6 +20,7 @@ import javax.swing.text.TableView;
  * @author Ruben Dario Guarnizo
  */
 public class PedirClase extends javax.swing.JFrame {
+
 
     /**
      * Creates new form SerProfesor
@@ -214,6 +216,7 @@ public class PedirClase extends javax.swing.JFrame {
     private void btnPedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedirActionPerformed
         int fila = tblHorario.getSelectedRow();
         int columna = tblHorario.getSelectedColumn();
+        Profesor profesor = (Profesor) lstProfesores.getSelectedValue();
 
         if (lstProfesores.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(rootPane, "Primero seleccione un profesor y un horario", "Error", JOptionPane.WARNING_MESSAGE);
@@ -221,15 +224,13 @@ public class PedirClase extends javax.swing.JFrame {
             if (tblHorario.getValueAt(fila, columna) == null) {
                 JOptionPane.showMessageDialog(rootPane, "Horario invalido, por favor verifique", "Error horario", JOptionPane.ERROR_MESSAGE);
             } else {
-                
-                Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila, columna).toString()), cbxLugar.getSelectedItem().toString(), (Profesor) lstProfesores.getSelectedValue(), Logic.Login.listaUsuarios.get(Logic.Login.usuarioLogeado));
+
+                Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila, columna).toString()), cbxLugar.getSelectedItem().toString(), (Profesor) lstProfesores.getSelectedValue(), Logic.Login.listaUsuarios.get(Logic.Login.usuarioLogeado),columna);
                 JOptionPane.showMessageDialog(rootPane, "Clase creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 tblHorario.setValueAt(null, fila, columna);
-                Logic.PedirClase.actualizarHorario((Profesor) lstProfesores.getSelectedValue(), tblHorario.getModel());
+                Logic.PedirClase.actualizarHorario(profesor, tblHorario.getModel());
             }
         }
-        
-        
 
 
     }//GEN-LAST:event_btnPedirActionPerformed
@@ -266,13 +267,12 @@ public class PedirClase extends javax.swing.JFrame {
     private void lstProfesoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstProfesoresMouseClicked
         JList list = (JList) evt.getSource();
         if (evt.getClickCount() == 1) {
-            Profesor profesor = new Profesor();
-            profesor = (Profesor) lstProfesores.getSelectedValue();
-            profesor.toString();
-            profesor.transformarModeloTabla();
+            Profesor profesor = (Profesor) lstProfesores.getSelectedValue();
+            
+            //profesor.transformarModeloTabla();
             tblHorario.setModel(profesor.getHorario());
         }
-        
+
     }//GEN-LAST:event_lstProfesoresMouseClicked
 
     private void cbxAreaDeEstudio1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxAreaDeEstudio1ItemStateChanged
