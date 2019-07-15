@@ -27,6 +27,7 @@ public class PedirClase implements Serializable {
         
         Date fechaCita= new Date(año,mes,dia,hora,00);
         Clase clase = new Clase(fechaCita, lugar, profesorQueDicta, usuarioQueRecibe);
+
         profesorQueDicta.getListaClases().add(clase);
         usuarioQueRecibe.getListaClases().add(clase);
         System.out.println(clase.toString());

@@ -51,6 +51,7 @@ public class Login extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+
         
     }
 
@@ -201,7 +202,7 @@ public class Login extends javax.swing.JFrame {
         System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
        try {
             
-            
+        
             ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.txt"));
             listaUsuarios = (TreeMap<String,Usuario>) inputUsers.readObject();
             inputUsers.close();
@@ -213,7 +214,7 @@ public class Login extends javax.swing.JFrame {
             ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.txt"));          
             blockchain = (ArrayList<Bloque>) inputBloque.readObject();            
             inputBloque.close();
-                
+             
             for (Usuario user : listaUsuarios.values()) {
                 System.out.println(user.toString());
             }
