@@ -31,6 +31,7 @@ public class Crud {
     public static ArrayList<Clase> listaClasesProfesor = new ArrayList<>();
     
     public static void registrarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad) throws IOException {
+
         Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, listaClasesUsuario, false));
 
     }
@@ -38,6 +39,7 @@ public class Crud {
     public static void registrarProfesor(String materiaDictada, double cobroPorHora, String correo, String contraseña, TableModel horario) {
         Usuario usuario = new Usuario();
         usuario = Logic.Login.listaUsuarios.get(correo);
+
         Profesor profesor = new Profesor(usuario, materiaDictada, cobroPorHora, listaClasesProfesor, horario, usuario.getNombre(), usuario.getApellido(), "null", contraseña, correo, usuario.getTelefono());
         profesor.getUsuario().setEsProfesor(true);
         listaProfesores.add(profesor);
@@ -76,7 +78,7 @@ public class Crud {
 
     public static void guardarBloques() {
         try {
-            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.obj"));
+            ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.txt"));
             salidaBloques.writeObject(blockchain);
             for (Bloque bloque : blockchain) {
                 System.out.println(bloque.toString());
@@ -113,6 +115,4 @@ public class Crud {
         return verif;
     }
     
- 
-
 }

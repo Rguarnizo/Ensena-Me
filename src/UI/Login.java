@@ -41,7 +41,7 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
 
-    static String correo;
+    public static String correo;
     /**
      * Creates new form Login
      */
@@ -200,7 +200,7 @@ public class Login extends javax.swing.JFrame {
         ////////////////////////////////////////////////
         /////////////////////////////////!!!!!!
         System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
-        try {
+       try {
             
             
             ObjectInputStream inputUsers = new ObjectInputStream(new FileInputStream("Usuarios.txt"));
