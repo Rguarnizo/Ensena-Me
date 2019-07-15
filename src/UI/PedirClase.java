@@ -221,6 +221,7 @@ public class PedirClase extends javax.swing.JFrame {
             if (tblHorario.getValueAt(fila, columna) == null) {
                 JOptionPane.showMessageDialog(rootPane, "Horario invalido, por favor verifique", "Error horario", JOptionPane.ERROR_MESSAGE);
             } else {
+                
                 Logic.PedirClase.pedirClase(Integer.parseInt(tblHorario.getValueAt(fila, columna).toString()), cbxLugar.getSelectedItem().toString(), (Profesor) lstProfesores.getSelectedValue(), Logic.Login.listaUsuarios.get(Logic.Login.usuarioLogeado));
                 JOptionPane.showMessageDialog(rootPane, "Clase creada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 tblHorario.setValueAt(null, fila, columna);

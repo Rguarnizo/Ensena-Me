@@ -6,10 +6,12 @@
 package UI;
 
 
+import Data.Profesor;
 import Data.Usuario;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
+import static Logic.Crud.listaProfesores;
 import static Logic.Crud.verificarEsProfesor;
 import static UI.Login.correo;
 import java.io.IOException;
