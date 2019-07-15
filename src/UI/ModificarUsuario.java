@@ -183,7 +183,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
              block1.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
              añadirBloque(block1);
              */
-            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito", "Exito", JOptionPane.OK_OPTION);
+           
+            //for(int i=0;i<Logic.Crud.listaClasesUsuario.size();i++)
+            //{
+            //    if(Logic.Crud.listaClasesUsuario.get(i).getProfesorQueDicta().getCorreo().equals(correo))
+            //    {
+            //           Crud.listaClasesUsuario.get(i).setProfesorQueDicta(Logic.Crud.registrarUsuario();
+            //    }
+            // }
+
+            
+            JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
             new MenuPrincipal().setVisible(true);
             dispose();

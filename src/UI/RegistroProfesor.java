@@ -5,6 +5,8 @@
  */
 package UI;
 
+import Data.Profesor;
+import Logic.Crud;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
@@ -23,9 +25,17 @@ public class RegistroProfesor extends javax.swing.JFrame {
      */
     public RegistroProfesor() {
         initComponents();
-
         this.setLocationRelativeTo(null);
         botonesTransparentes();
+        this.remove(btnCambiarHorario);
+    }
+    public RegistroProfesor(boolean esProfesor)
+    {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        botonesTransparentes();
+        deshabilitarCampos();
+        this.remove(btnSerProfesor);
     }
 
     private void botonesTransparentes() {
@@ -33,6 +43,10 @@ public class RegistroProfesor extends javax.swing.JFrame {
         btnSerProfesor.setOpaque(false);
         btnSerProfesor.setContentAreaFilled(false);
         btnSerProfesor.setBorderPainted(false);
+        
+        btnCambiarHorario.setOpaque(false);
+        btnCambiarHorario.setContentAreaFilled(false);
+        btnCambiarHorario.setBorderPainted(false);
 
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
@@ -51,6 +65,16 @@ public class RegistroProfesor extends javax.swing.JFrame {
             return false;
         }
     }
+    private void deshabilitarCampos()
+    {
+        cbxMateria.setEnabled(false);
+        txtCobro.setEnabled(false);
+        txtContrasena.setEnabled(false);
+        txtCorreo.setEnabled(false);
+        btnSerProfesor.setEnabled(false);
+        
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +86,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
     private void initComponents() {
 
         btnSerProfesor = new javax.swing.JButton();
+        btnCambiarHorario = new javax.swing.JButton();
         txtCobro = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
@@ -83,6 +108,14 @@ public class RegistroProfesor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSerProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 160, 60));
+
+        btnCambiarHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCambiarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarHorarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCambiarHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 160, 60));
         getContentPane().add(txtCobro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 70, 30));
         getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 190, 30));
         getContentPane().add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 540, 190, 30));
@@ -228,6 +261,22 @@ public class RegistroProfesor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblHorarioMouseClicked
 
+    private void btnCambiarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarHorarioActionPerformed
+
+        TableModel horario = this.tblHorario.getModel();
+        for(Profesor profesor: Crud.listaProfesores)
+        {
+            if(profesor.getCorreo().equals(Login.correo))
+            {
+                profesor.setHorario(tblHorario.getModel());
+                
+            }
+        }
+
+        JOptionPane.showMessageDialog(rootPane, "El horario ha sido actualizado con exito", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_btnCambiarHorarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,6 +320,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2;
+    private javax.swing.JButton btnCambiarHorario;
     private javax.swing.JButton btnSerProfesor;
     private javax.swing.JComboBox cbxMateria;
     private javax.swing.JButton jButton1;

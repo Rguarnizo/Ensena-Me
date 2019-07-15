@@ -73,11 +73,11 @@ public class Usuario extends Persona implements Serializable {
         return this.listaClases;
     }
 
-    public void setListaClases(Clase cita) {
-        listaClases = new ArrayList<>();
-        listaClases.add(cita);
+    public void setListaClases(ArrayList<Clase> listaClases) {
+        this.listaClases = listaClases;
     }
 
+    
     public boolean isEsProfesor() {
         return this.esProfesor;
     }
