@@ -32,68 +32,82 @@ public class VerTutoria extends javax.swing.JFrame {
         botonesTransparentes();
         definirTablaClases();
     }
-    private void definirTablaClases(){
-        
+
+    private void definirTablaClases() {
+
         ArrayList<Clase> listaClases = null;
-        
-        for(Profesor profe : listaProfesores)
-        {
-            if(profe.getUsuario().getCorreo().equals(correo))
-            {
+        String dia="";
+        for (Profesor profe : listaProfesores) {
+            if (profe.getUsuario().getCorreo().equals(correo)) {
                 listaClases = profe.getListaClases();
             }
-        }      
-                
-                    
-        if(verificarEsProfesor() == false){
-            System.out.println("No Eres Profesor Aun!");
-        }else{
-        
+        }
+
+        if (verificarEsProfesor() == false) {
+            System.out.println("No eres profesor aun!");
+        } else {
+
             DefaultTableModel modelo = new DefaultTableModel();
-        
+
             modelo.addColumn("Nombre Alumno");
             modelo.addColumn("Lugar/Sitio");
-            modelo.addColumn("Fecha");
-        for (Clase clas : listaClases) {
-            String[] fila = {clas.getEstudianteQueRecibe().getNombre(),clas.getLugar(),clas.getFecha().toString()};
-            modelo.addRow(fila);
-        }
-        jTable1.setModel(modelo);
+            modelo.addColumn("Hora/Fecha");
+            for (Clase clas : listaClases) {
+                
+                switch (clas.getFecha().getDay()) {
+                    case 1:
+                        dia = "Lunes";
+                        break;
+                    case 2:
+                        dia = "Martes";
+                        break;
+                    case 3:
+                        dia = "Miercoles";
+                        break;
+                    case 4:
+                        dia = "Jueves";
+                        break;
+                    case 5:
+                        dia = "Viernes ";
+                        break;
+                }
+                String[] fila = {clas.getEstudianteQueRecibe().getNombre(), clas.getLugar(), Long.toString(clas.getFecha().getHours()) + ":00" + ',' + dia };
+                modelo.addRow(fila);
+            }
+            jTable1.setModel(modelo);
         }
     }
-    
-    public void botonesTransparentes(){
-        
+
+    public void botonesTransparentes() {
+
         btn1.setOpaque(false);
         btn1.setContentAreaFilled(false);
         btn1.setBorderPainted(false);
-        
+
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
         btn2.setBorderPainted(false);
-        
+
         btn3.setOpaque(false);
         btn3.setContentAreaFilled(false);
         btn3.setBorderPainted(false);
-        
+
         btn4.setOpaque(false);
         btn4.setContentAreaFilled(false);
         btn4.setBorderPainted(false);
-        
+
         btn5.setOpaque(false);
         btn5.setContentAreaFilled(false);
         btn5.setBorderPainted(false);
-        
+
         jButton1.setOpaque(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
-        
+
         jButton2.setOpaque(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setBorderPainted(false);
-        
-        
-    
+
     }
 
     /**
@@ -210,9 +224,9 @@ public class VerTutoria extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          // TODO add your handling code here:
-         
-         new MenuPrincipal().setVisible(true);
-         dispose();
+
+        new MenuPrincipal().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -225,7 +239,7 @@ public class VerTutoria extends javax.swing.JFrame {
         System.out.println("Guardando Blockchain...");
         guardarBloques();
         System.out.println("BlockchainGuardado Exitosamente");
-       
+
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -239,27 +253,27 @@ public class VerTutoria extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+         if ("Nimbus".equals(info.getName())) {
+         javax.swing.UIManager.setLookAndFeel(info.getClassName());
+         break;
+         }
+         }
+         } catch (ClassNotFoundException ex) {
+         java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (InstantiationException ex) {
+         java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (IllegalAccessException ex) {
+         java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+         java.util.logging.Logger.getLogger(VerTutoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         }
+         //</editor-fold>
+         //</editor-fold>
+         //</editor-fold>
+         //</editor-fold>
 
-        /* Create and display the form */
+         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VerTutoria().setVisible(true);

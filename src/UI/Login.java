@@ -214,7 +214,7 @@ public class Login extends javax.swing.JFrame {
             ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.txt"));          
             blockchain = (ArrayList<Bloque>) inputBloque.readObject();            
             inputBloque.close();
-            
+         
             for (Usuario user : listaUsuarios.values()) {
                 System.out.println(user.toString());
             }

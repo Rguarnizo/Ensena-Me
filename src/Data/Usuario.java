@@ -17,7 +17,7 @@ public class Usuario extends Persona implements Serializable {
     private String carrera;
     private int semestre;
     private String facultad;
-    private ArrayList<Clase> listaClases;
+    private ArrayList<Clase> listaClases = new ArrayList<>();
     private boolean esProfesor;
     public Monedero monedero = new Monedero();
     

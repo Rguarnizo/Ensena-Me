@@ -173,8 +173,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
             String facultad = txtFacultad.getText();
             String correo = txtCorreo.getText();
             String contraseña = txtContraseña.getText();
+            boolean esProfesor = Logic.Login.listaUsuarios.get(correo).getEsProfesor();
             try {
-                Logic.Crud.registrarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad);
+                Logic.Crud.actualizarUsuario(nombre, apellido, contraseña, correo, telefono, carrera, semestre, facultad, esProfesor);
             } catch (IOException ex) {
                 Logger.getLogger(ModificarUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
