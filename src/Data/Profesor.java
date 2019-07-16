@@ -24,6 +24,7 @@ public class Profesor extends Persona implements Serializable {
     private TableModel horario;
     private DefaultTableModel horarioExportado = (DefaultTableModel) horario;
 
+
     public Profesor(Usuario usuario, String materiaDictada, double cobroPorHora, ArrayList<Clase> listaClases, TableModel horario, String nombre, String apellido, String direccionMonedero, String contraseña, String correo, long telefono) {
         super(nombre, apellido, direccionMonedero, contraseña, correo, telefono);
         this.usuario = usuario;

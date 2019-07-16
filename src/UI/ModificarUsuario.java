@@ -129,7 +129,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 160, 60));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, 160, 60));
 
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +223,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int eliminar = 0;
+         int opcion = JOptionPane.showConfirmDialog(null,"ESTA SEGURO DE ELIMAR SU USUARIO :(","Eliminar Usuario",JOptionPane.YES_NO_CANCEL_OPTION);
+        if(opcion == JOptionPane.YES_OPTION){
         String correoAEliminar = txtCorreo.getText();
         if (Logic.Login.listaUsuarios.get(correoAEliminar).getEsProfesor()) {
             for (int i = 0; i < Logic.Crud.listaProfesores.size(); i++) {
@@ -234,10 +236,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
         }
 
         Logic.Login.listaUsuarios.remove(correoAEliminar);
-
+        
         new Login().setVisible(true);
         dispose();
-
+        } 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
