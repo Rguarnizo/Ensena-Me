@@ -5,12 +5,10 @@
  */
 package Logic;
 
-import Data.Bloque;
 import Data.Clase;
 import Data.Profesor;
 import Data.Usuario;
 import static Logic.Login.listaUsuarios;
-import static UI.EduPay.blockchain;
 import java.io.FileNotFoundException;
 import java.io.*;
 import java.io.IOException;
@@ -27,12 +25,66 @@ import javax.swing.table.TableModel;
 public class Crud {
 
     public static ArrayList<Profesor> listaProfesores = new ArrayList<>();
-    public static ArrayList<Clase> listaClasesUsuario = new ArrayList<>();
-    public static ArrayList<Clase> listaClasesProfesor = new ArrayList<>();
-    
+
     public static void registrarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad) throws IOException {
 
-        Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, listaClasesUsuario, false));
+        Login.listaUsuarios.put(correo, new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, new ArrayList<Clase>(), false));
+
+    }
+
+    public static void actualizarUsuario(String nombre, String apellido, String contraseña, String correo, long telefono, String carrera, int semestre, String facultad, boolean esProfesor) throws IOException {
+
+        Usuario usuario = new Usuario(nombre, apellido, "null", contraseña, correo, telefono, carrera, semestre, facultad, listaUsuarios.get(correo).getListaClases(), esProfesor);
+        Login.listaUsuarios.put(correo, usuario);
+
+        String materiaDictada = "";
+        double cobroPorHora = 0;
+        TableModel horario = null;
+        ArrayList<Clase> clases = null;
+
+        for (int i = 0; i < listaProfesores.size(); i++) {
+            if (listaProfesores.get(i).getCorreo().equals(correo)) {
+                materiaDictada = listaProfesores.get(i).getMateriaDictada();
+                cobroPorHora = listaProfesores.get(i).getCobroPorHora();
+                horario = listaProfesores.get(i).getHorario();
+                clases = listaProfesores.get(i).getListaClases();
+            }
+
+        }
+        for(int i=0; i<listaProfesores.size();i++)
+        {
+                ArrayList<Clase> listaClasesProfesor= listaProfesores.get(i).getListaClases();
+                for(int j=0; j<listaClasesProfesor.size();j++)
+                {
+                    listaClasesProfesor.get(j).setEstudianteQueRecibe(usuario);
+                }
+            
+        }
+
+        if (esProfesor) {
+           
+            
+            for (Usuario usu : listaUsuarios.values()) {
+                ArrayList<Clase> listaClasesUsuario= usu.getListaClases();
+                for(int i=0; i< listaClasesUsuario.size();i++)
+                {
+                    if(listaClasesUsuario.get(i).getProfesorQueDicta().getCorreo().equals(correo))
+                    {
+                        listaClasesUsuario.get(i).setProfesorQueDicta(new Profesor(usuario, materiaDictada, cobroPorHora, clases, horario, nombre, apellido, "null", contraseña, correo, telefono));
+                    }
+                }
+                
+            }
+            for (int i = 0; i < listaProfesores.size(); i++) {
+                if (listaProfesores.get(i).getCorreo().equals(correo)) {
+                    listaProfesores.remove(i);
+                }
+            }
+            listaProfesores.add(new Profesor(usuario, materiaDictada, cobroPorHora, clases, horario, nombre, apellido, "null", contraseña, correo, telefono));
+
+        }
+
+        System.out.println(listaUsuarios.get(correo));
 
     }
 
@@ -40,7 +92,7 @@ public class Crud {
         Usuario usuario = new Usuario();
         usuario = Logic.Login.listaUsuarios.get(correo);
 
-        Profesor profesor = new Profesor(usuario, materiaDictada, cobroPorHora, listaClasesProfesor, horario, usuario.getNombre(), usuario.getApellido(), "null", contraseña, correo, usuario.getTelefono());
+        Profesor profesor = new Profesor(usuario, materiaDictada, cobroPorHora, new ArrayList<Clase>(), horario, usuario.getNombre(), usuario.getApellido(), "null", contraseña, correo, usuario.getTelefono());
         profesor.getUsuario().setEsProfesor(true);
         listaProfesores.add(profesor);
     }
@@ -60,7 +112,6 @@ public class Crud {
         }
     }
 
-
     public static void guardarProfesores() {
 
         try {
@@ -77,6 +128,7 @@ public class Crud {
     }
 
     public static void guardarBloques() {
+        /*
         try {
             ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.txt"));
             salidaBloques.writeObject(blockchain);
@@ -88,6 +140,7 @@ public class Crud {
         } catch (IOException ex) {
             Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+*/
     }
 
     public static boolean verificarEsProfesor() {
@@ -110,9 +163,9 @@ public class Crud {
         for (Usuario usuario : Login.listaUsuarios.values()) {
             if (correo.equals(usuario.getCorreo())) {
                 verif = true;
-            } 
+            }
         }
         return verif;
     }
-    
+
 }

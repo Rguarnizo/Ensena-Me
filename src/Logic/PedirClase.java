@@ -29,10 +29,9 @@ public class PedirClase implements Serializable {
         Date fechaCita= new Date(año,mes,columna,hora,00);
         Clase clase = new Clase(fechaCita, lugar, profesorQueDicta, usuarioQueRecibe);
         
-        Crud.listaClasesProfesor.add(clase);
-        Crud.listaClasesUsuario.add(clase);
-        Logic.Login.listaUsuarios.get(Login.usuarioLogeado).setListaClases(Crud.listaClasesUsuario);
-        profesorQueDicta.setListaClasesProfesor(Crud.listaClasesProfesor);
+
+        usuarioQueRecibe.getListaClases().add(clase);
+        profesorQueDicta.getListaClases().add(clase);
                
     }
     public static void actualizarHorario(Profesor profesorQueDicta, TableModel horario)

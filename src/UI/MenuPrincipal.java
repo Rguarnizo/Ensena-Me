@@ -23,7 +23,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
-        txtSaldo.setText(Float.toString(Logic.Login.listaUsuarios.get(correo).monedero.getBalance()));
+        txtSaldo.setText(Integer.toString(Logic.Login.listaUsuarios.get(correo).monedero.getSaldo())+" EC");
         txtNombre.setText(listaUsuarios.get(correo).getNombre());
         
     }
@@ -153,14 +153,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 180, 170));
 
+        txtSaldo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSaldo.setForeground(new java.awt.Color(255, 255, 255));
         txtSaldo.setText("Saldo Cuenta");
-        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 120, 40));
+        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 120, 30));
 
-        txtNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Dialog", 0, 27)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setText("Nombre Usuario");
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 200, 40));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 230, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Menu_Principal.png"))); // NOI18N
         jLabel1.setText("jLabel1");

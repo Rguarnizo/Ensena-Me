@@ -17,9 +17,9 @@ public class Usuario extends Persona implements Serializable {
     private String carrera;
     private int semestre;
     private String facultad;
-    private ArrayList<Clase> listaClases;
+    private ArrayList<Clase> listaClases = new ArrayList<>();
     private boolean esProfesor;
-    public Monedero monedero = new Monedero();
+    public EduCoins monedero;
     
     
     public Usuario() {
@@ -32,14 +32,14 @@ public class Usuario extends Persona implements Serializable {
         this.facultad = facultad;
         this.listaClases = listaClases;
         this.esProfesor = esProfesor;
-        monedero=new Monedero();
+        monedero=new EduCoins(1);
     }
 
-    public Monedero getMonedero() {
+    public EduCoins getMonedero() {
         return monedero;
     }
 
-    public void setMonedero(Monedero monedero) {
+    public void setMonedero(EduCoins monedero) {
         this.monedero = monedero;
     }
     
@@ -117,7 +117,7 @@ public class Usuario extends Persona implements Serializable {
 
     @Override
     public String toString() {
-        return " Usuario: " + this.getCorreo() + " Contraseña: " +  this.getContraseña() +" Nombre: " + this.getNombre() +" facultad: " + this.getFacultad() + "  Balance EduCoins: " + this.monedero.getBalance();
+        return " Usuario: " + this.getCorreo() + " Contraseña: " +  this.getContraseña() +" Nombre: " + this.getNombre() +" facultad: " + this.getFacultad() + "  Balance EduCoins: " + this.monedero.getSaldo();
     }
 
     

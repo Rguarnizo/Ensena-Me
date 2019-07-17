@@ -102,7 +102,7 @@ public class Profesor extends Persona implements Serializable {
     @Override
     public String toString()
     {
-        return "Nombre: "+getNombre()+", "+"Apellido:"+getApellido()+", "+"Materia que dicta: "+getMateriaDictada()+", "+"Cobro por hora: "+getCobroPorHora();
+        return "Nombre: "+super.getNombre()+", "+"Apellido:"+getApellido()+", "+"Materia que dicta: "+getMateriaDictada()+", "+"Cobro por hora: "+getCobroPorHora();
     }
     
 

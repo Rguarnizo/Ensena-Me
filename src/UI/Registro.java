@@ -5,13 +5,10 @@
  */
 package UI;
 
-import Data.Bloque;
+
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
-import static UI.EduPay.añadirBloque;
-import static UI.EduPay.blockchain;
-import static UI.EduPay.monederoA;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +47,10 @@ public class Registro extends javax.swing.JFrame {
     }
 
     private boolean camposVacios() {
-        if (txtApellido.getText().isEmpty() || txtCarrera.getText().isEmpty() || txtContraseña.getText().isEmpty() || txtCorreo.getText().isEmpty() || txtFacultad.getText().isEmpty() || txtNombre.getText().isEmpty() || txtSemestre.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
+        if (txtApellido.getText().isEmpty() || txtCarrera.getText().isEmpty() || 
+                txtContraseña.getText().isEmpty() || txtCorreo.getText().isEmpty() 
+                || txtFacultad.getText().isEmpty() || txtNombre.getText().isEmpty() 
+                || txtSemestre.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
             return true;
         } else {
             return false;
@@ -154,9 +154,7 @@ public class Registro extends javax.swing.JFrame {
                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
             /////////////
-            Bloque block = new Bloque(blockchain.get(blockchain.size() - 1).hash);
-            block.añadirTransaccion(monederoA.enviarFondos(Logic.Login.listaUsuarios.get(correo).monedero.llavePublica, 1));
-            añadirBloque(block);
+            Logic.Login.listaUsuarios.get(correo).monedero.setSaldo(10);
             ///////////////
             JOptionPane.showMessageDialog(rootPane, "Usuario registrado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
