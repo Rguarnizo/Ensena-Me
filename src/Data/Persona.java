@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author Ruben Dario Guarnizo
  */
 public abstract class Persona implements Serializable {
+    
     private String nombre;
     private String apellido;
     private String direccionMonedero;

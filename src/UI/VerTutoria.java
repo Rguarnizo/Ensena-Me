@@ -54,7 +54,7 @@ public class VerTutoria extends javax.swing.JFrame {
             modelo.addColumn("Nombre Alumno");
             modelo.addColumn("Lugar/Sitio");
             modelo.addColumn("Fecha");
-        for (Clase clas : profesor.getListaClases()) {
+        for (Clase clas : profesor.getListaClasesProfesor()) {
             String[] fila = {clas.getEstudianteQueRecibe().getNombre(),clas.getLugar(),clas.getFecha().toString()};
             modelo.addRow(fila);
         }

@@ -120,32 +120,5 @@ public class Usuario extends Persona implements Serializable {
         return " Usuario: " + this.getCorreo() + " Contraseña: " +  this.getContraseña() +" Nombre: " + this.getNombre() +" facultad: " + this.getFacultad() + "  Balance EduCoins: " + this.monedero.getBalance();
     }
 
-
-   
-
-    public void crearEstudiante() {
-            
-    };
-
-    public void verEstudiante() {
-
-    };
-
-    public void actualizarEstudiante() {
-
-    };
-
-    public void eliminarEstudiante() {
-
-    };
-
-    public void cancelarClase() {
-
-    };
-
-    public void verClases() {
-
-    };
-    
     
 }

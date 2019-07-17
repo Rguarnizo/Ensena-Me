@@ -43,6 +43,14 @@ public class Profesor extends Persona implements Serializable {
         this.horarioExportado = horarioExportado;
     }
 
+    public ArrayList<Clase> getListaClasesProfesor() {
+        return listaClasesProfesor;
+    }
+
+    public void setListaClasesProfesor(ArrayList<Clase> listaClasesProfesor) {
+        this.listaClasesProfesor = listaClasesProfesor;
+    }
+
     
     public Usuario getUsuario() {
         return usuario;
