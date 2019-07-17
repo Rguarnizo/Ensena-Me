@@ -42,9 +42,9 @@ public class EduPay extends javax.swing.JFrame {
         btnEnviar.setContentAreaFilled(false);
         btnEnviar.setBorderPainted(false);
         
-        btn2.setOpaque(false);
-        btn2.setContentAreaFilled(false);
-        btn2.setBorderPainted(false);
+        btn0.setOpaque(false);
+        btn0.setContentAreaFilled(false);
+        btn0.setBorderPainted(false);
         
         btn3.setOpaque(false);
         btn3.setContentAreaFilled(false);
@@ -80,16 +80,16 @@ public class EduPay extends javax.swing.JFrame {
     private void initComponents() {
 
         btnEnviar = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
+        btn0 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txtMonto = new javax.swing.JTextField();
-        cbUsuarios = new javax.swing.JComboBox<>();
+        cbUsuarios = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listTransacciones = new javax.swing.JList<>();
+        listTransacciones = new javax.swing.JList<String>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,13 +104,13 @@ public class EduPay extends javax.swing.JFrame {
         });
         getContentPane().add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 190, 50));
 
-        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btn0.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btn0ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
+        getContentPane().add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
 
         btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 50));
@@ -143,7 +143,7 @@ public class EduPay extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 60, 50));
         getContentPane().add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 400, 30));
 
-        cbUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cbUsuarios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         getContentPane().add(cbUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 400, 40));
 
         jScrollPane1.setViewportView(listTransacciones);
@@ -186,10 +186,10 @@ public class EduPay extends javax.swing.JFrame {
                     Logic.Login.listaUsuarios.get(destinatario).monedero.setSaldo(
                             (saldoAnteriorDestinatario+valor));
                     //Añadir transacciones al historial
-                    String mensajeEnvio=("Usted ha enviado: "+ valor +"EC a: "+ Logic.Login.listaUsuarios.get(cbUsuarios.getSelectedItem().toString()).getCorreo());
+                    String mensajeEnvio=("Usted ha enviado: "+ valor +"EC a: "+ Logic.Login.listaUsuarios.get(cbUsuarios.getSelectedItem().toString()).getNombre());
                     Logic.Login.listaUsuarios.get(correo).monedero.getTransaciones().add(mensajeEnvio);
                     Logic.Login.listaUsuarios.get(cbUsuarios.getSelectedItem().toString()).monedero.getTransaciones().add("Usted ha recibido: "+ valor+"EC de: "
-                    + Logic.Login.listaUsuarios.get(correo).getCorreo());
+                    + Logic.Login.listaUsuarios.get(correo).getNombre());
                     JOptionPane.showMessageDialog(null, "Transaccion realizada con exito", 
                     "Advertencia" ,JOptionPane.INFORMATION_MESSAGE);
                 }else{
@@ -232,6 +232,10 @@ public class EduPay extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn0ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,7 +275,7 @@ public class EduPay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn2;
+    private javax.swing.JButton btn0;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;

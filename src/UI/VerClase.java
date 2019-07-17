@@ -7,6 +7,7 @@ package UI;
 
 import Data.Clase;
 import Data.Profesor;
+import Logic.Crud;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
@@ -66,7 +67,7 @@ public class VerClase extends javax.swing.JFrame {
                         break;
                 }
 
-                String[] fila = {clas.getProfesorQueDicta().getNombre(), clas.getLugar(), Long.toString(clas.getFecha().getHours()) + ":00" + ',' + dia };
+                String[] fila = {clas.getProfesorQueDicta().getNombre(), clas.getLugar(), Long.toString(clas.getFecha().getHours()) + ":00" + ',' + dia};
                 modelo.addRow(fila);
             }
             tblClases.setModel(modelo);
@@ -206,7 +207,9 @@ public class VerClase extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         int fila = tblClases.getSelectedRow();
         int columna = tblClases.getSelectedColumn();
+        ArrayList<Clase> listaClaseEliminar = new ArrayList<>();
         int posicionAEliminar = -1;
+        int posicionAEliminar2 = -1;
         int respuesta = JOptionPane.showConfirmDialog(rootPane, "¿Esta seguro que desea eliminar?", "Verificacion eliminar", JOptionPane.YES_NO_CANCEL_OPTION);
 
         if (respuesta == 0) {
@@ -216,9 +219,21 @@ public class VerClase extends javax.swing.JFrame {
                         posicionAEliminar = i;
                     }
                 }
+
+                for (int i = 0; i < Crud.listaProfesores.size(); i++) {
+                    if (Crud.listaProfesores.get(i).getNombre().equals(tblClases.getValueAt(fila, columna))) {
+                        listaClaseEliminar = Crud.listaProfesores.get(i).getListaClases();
+                    }
+                }
+                for (int i = 0; i < listaClaseEliminar.size(); i++) {
+                    if (listaClaseEliminar.get(i).getProfesorQueDicta().getNombre().equals(tblClases.getValueAt(fila, columna))) {
+                        posicionAEliminar2 = i;
+                    }
+                }
+                listaClaseEliminar.remove(posicionAEliminar2);
                 listaClases.remove(posicionAEliminar);
                 definirTablaClases();
-                JOptionPane.showMessageDialog(rootPane, "Clase eliminada con exito", "Exito", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(rootPane, "Clase eliminada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 new MenuPrincipal().setVisible(true);
                 this.dispose();
             } else {

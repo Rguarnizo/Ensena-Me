@@ -15,6 +15,7 @@ import static Logic.Crud.verificarEsProfesor;
 import static Logic.Login.listaUsuarios;
 import static UI.Login.correo;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VerTutoria extends javax.swing.JFrame {
 
+    public ArrayList<Clase> listaClases = new ArrayList<>();
     /**
      * Creates new form SerProfesor
      */
@@ -74,15 +76,15 @@ public class VerTutoria extends javax.swing.JFrame {
                 String[] fila = {clas.getEstudianteQueRecibe().getNombre(), clas.getLugar(), Long.toString(clas.getFecha().getHours()) + ":00" + ',' + dia };
                 modelo.addRow(fila);
             }
-            jTable1.setModel(modelo);
+            tblTutorias.setModel(modelo);
         }
     }
 
     public void botonesTransparentes() {
 
-        btn1.setOpaque(false);
-        btn1.setContentAreaFilled(false);
-        btn1.setBorderPainted(false);
+        btnCancelarTutoria.setOpaque(false);
+        btnCancelarTutoria.setContentAreaFilled(false);
+        btnCancelarTutoria.setBorderPainted(false);
 
         btn2.setOpaque(false);
         btn2.setContentAreaFilled(false);
@@ -119,7 +121,7 @@ public class VerTutoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn1 = new javax.swing.JButton();
+        btnCancelarTutoria = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
@@ -127,20 +129,20 @@ public class VerTutoria extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTutorias = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelarTutoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelarTutoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                btnCancelarTutoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 200, 50));
+        getContentPane().add(btnCancelarTutoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 200, 50));
 
         btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn2.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +182,7 @@ public class VerTutoria extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(733, 10, 60, 60));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTutorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -199,9 +201,11 @@ public class VerTutoria extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblTutorias.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tblTutorias);
+        tblTutorias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 220, 480, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 480, 100));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI Recursos/Ver_Tutorias.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -210,9 +214,52 @@ public class VerTutoria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn1ActionPerformed
+    private void btnCancelarTutoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTutoriaActionPerformed
+        int fila = tblTutorias.getSelectedRow();
+        int columna = tblTutorias.getSelectedColumn();
+        int posicionAEliminar1 = -1;
+        int posicionAEliminar2 = -1;
+        String estudianteAEliminar="";
+        ArrayList<Clase> listaClasesEliminar= new ArrayList<>();
+        int respuesta = JOptionPane.showConfirmDialog(rootPane, "¿Esta seguro que desea eliminar?", "Verificacion eliminar", JOptionPane.YES_NO_CANCEL_OPTION);
+        
+        for(int i=0; i<Logic.Crud.listaProfesores.size();i++)
+        {
+            if(listaProfesores.get(i).getCorreo().equals(Logic.Login.usuarioLogeado))
+            {
+                listaClases= listaProfesores.get(i).getListaClases();
+            }
+        }
+                  
+        
+        if (respuesta == 0) {
+            if (columna == 0) {
+                for (int i = 0; i < listaClases.size(); i++) {
+                    if (listaClases.get(i).getEstudianteQueRecibe().getNombre().equals(tblTutorias.getValueAt(fila, columna))) {
+                        posicionAEliminar1 = i;
+                        estudianteAEliminar= listaClases.get(i).getEstudianteQueRecibe().getCorreo();
+                    }
+                }
+                listaClasesEliminar= listaUsuarios.get(estudianteAEliminar).getListaClases();
+                listaClases.remove(posicionAEliminar1);
+                
+                for(int i=0; i<listaClasesEliminar.size();i++)
+                {
+                    if(listaClasesEliminar.get(i).getEstudianteQueRecibe().getNombre().equals(tblTutorias.getValueAt(fila, columna)))
+                    {
+                        posicionAEliminar2=i;
+                    }
+                }
+                listaClasesEliminar.remove(posicionAEliminar2);
+                definirTablaClases();
+                JOptionPane.showMessageDialog(rootPane, "Clase eliminada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                new MenuPrincipal().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Para eliminar seleccione el nombre del profesor de la clase", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnCancelarTutoriaActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
@@ -282,15 +329,15 @@ public class VerTutoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JButton btn5;
+    private javax.swing.JButton btnCancelarTutoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblTutorias;
     // End of variables declaration//GEN-END:variables
 }
