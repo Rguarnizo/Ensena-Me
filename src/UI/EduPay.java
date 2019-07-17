@@ -23,7 +23,11 @@ public class EduPay extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         botonesTransparentes();
         for (Usuario i : Logic.Login.listaUsuarios.values()) {
-            cbUsuarios.addItem(i.getCorreo());
+            if(Logic.Login.listaUsuarios.get(correo).getCorreo().equals(i.getCorreo())){
+                
+            }else{
+                cbUsuarios.addItem(i.getCorreo());
+            }
         }
         DefaultListModel dlm=new DefaultListModel();
         for(int i=0;i<Logic.Login.listaUsuarios.get(correo).monedero.getTransaciones().size();i++){
