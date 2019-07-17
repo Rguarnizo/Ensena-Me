@@ -23,7 +23,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         botonesTransparentes();
-        txtSaldo.setText(Float.toString(Logic.Login.listaUsuarios.get(correo).monedero.getBalance()));
+        txtSaldo.setText(Integer.toString(Logic.Login.listaUsuarios.get(correo).monedero.getSaldo())+" EC");
         txtNombre.setText(listaUsuarios.get(correo).getNombre());
         
     }
@@ -155,7 +155,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         txtSaldo.setForeground(new java.awt.Color(255, 255, 255));
         txtSaldo.setText("Saldo Cuenta");
-        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 120, 40));
+        getContentPane().add(txtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 120, 30));
 
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));

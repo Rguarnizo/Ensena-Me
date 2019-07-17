@@ -6,15 +6,17 @@
 package Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author Ruben Dario Guarnizo
  */
 public class EduCoins implements Serializable {
-    private String nombre;
-    private String direccionMonedero;
-
+    private int saldo;
+    private ArrayList<String> transaciones=new ArrayList<>();
+    
+    
     public boolean esValido()
     {
         return true;
@@ -22,45 +24,31 @@ public class EduCoins implements Serializable {
     public EduCoins() {
     }
 
-    public EduCoins(String nombre, String direccionMonedero) {
-        this.nombre = nombre;
-        this.direccionMonedero = direccionMonedero;
+    public EduCoins(int saldo) {
+        this.saldo = saldo;
+    }
+    
+    public EduCoins(int saldo, ArrayList<String> transaciones) {
+        this.saldo = saldo;
+        this.transaciones = transaciones;
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public int getSaldo() {
+        return saldo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
     }
 
-    public String getDireccionMonedero() {
-        return this.direccionMonedero;
+    public ArrayList<String> getTransaciones() {
+        return transaciones;
     }
 
-    public void setDireccionMonedero(String direccionMonedero) {
-        this.direccionMonedero = direccionMonedero;
+    public void setTransaciones(ArrayList<String> transaciones) {
+        this.transaciones = transaciones;
     }
 
-    public EduCoins nombre(String nombre) {
-        this.nombre = nombre;
-        return this;
-    }
-
-    public EduCoins direccionMonedero(String direccionMonedero) {
-        this.direccionMonedero = direccionMonedero;
-        return this;
-    }
-
-  
-    @Override
-    public String toString() {
-        return "{" +
-            " nombre='" + getNombre() + "'" +
-            ", direccionMonedero='" + getDireccionMonedero() + "'" +
-            "}";
-    }
     
 
     

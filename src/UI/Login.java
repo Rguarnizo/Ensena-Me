@@ -5,11 +5,7 @@
  */
 package UI;
 
-import Data.Bloque;
-import Data.Monedero;
 import Data.Profesor;
-import Data.Transaccion;
-import Data.TransaccionSaliente;
 import Data.Usuario;
 
 import Logic.Crud;
@@ -17,16 +13,10 @@ import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
 import static Logic.Login.listaUsuarios;
-import static UI.EduPay.UTXOs;
-import static UI.EduPay.añadirBloque;
-import static UI.EduPay.blockchain;
-import static UI.EduPay.bloqueGenesis;
-import static UI.EduPay.monederoA;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.*;
 import java.io.ObjectInputStream;
-import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -140,9 +130,6 @@ public class Login extends javax.swing.JFrame {
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        
-       
-       
         System.out.println("Guardando Usuarios...");
         guardarUsuarios();
         System.out.println("Los Usuarios se han guardado con exito ");
@@ -185,20 +172,6 @@ public class Login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) throws FileNotFoundException, IOException, ClassNotFoundException {
-        /* Set the Nimbus look and feel */
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Api criptografia como proveedor de seguridad
-        Monedero monederoCentral = new Monedero();
-	//Creacion de bloque genesis que envia 100EC al monederoA
-	bloqueGenesis = new Transaccion(monederoCentral.llavePublica, monederoA.llavePublica, 1000, null);
-	bloqueGenesis.generarFirma(monederoCentral.llavePrivada);	 //Firma manual de la transaccion
-	bloqueGenesis.transaccionId = "0"; //ID de la transaccion manual asignar
-	bloqueGenesis.salidas.add(new TransaccionSaliente(bloqueGenesis.destinatario, bloqueGenesis.valor, bloqueGenesis.transaccionId));
-	UTXOs.put(bloqueGenesis.salidas.get(0).id, bloqueGenesis.salidas.get(0));
-	Bloque genesis = new Bloque("0");
-	genesis.añadirTransaccion(bloqueGenesis);
-        añadirBloque(genesis);  
-        ////////////////////////////////////////////////
-        /////////////////////////////////!!!!!!
         System.out.println("Cargando Archivo de Usuarios,Profesores y bloques...");
        try {
             
@@ -211,9 +184,6 @@ public class Login extends javax.swing.JFrame {
             Logic.Crud.listaProfesores = (ArrayList<Profesor>) inputProfesores.readObject();
             inputProfesores.close();
            
-            ObjectInputStream inputBloque = new ObjectInputStream(new FileInputStream("Bloques.txt"));          
-            blockchain = (ArrayList<Bloque>) inputBloque.readObject();            
-            inputBloque.close();
          
             for (Usuario user : listaUsuarios.values()) {
                 System.out.println(user.toString());

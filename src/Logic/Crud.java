@@ -5,12 +5,10 @@
  */
 package Logic;
 
-import Data.Bloque;
 import Data.Clase;
 import Data.Profesor;
 import Data.Usuario;
 import static Logic.Login.listaUsuarios;
-import static UI.EduPay.blockchain;
 import java.io.FileNotFoundException;
 import java.io.*;
 import java.io.IOException;
@@ -130,6 +128,7 @@ public class Crud {
     }
 
     public static void guardarBloques() {
+        /*
         try {
             ObjectOutputStream salidaBloques = new ObjectOutputStream(new FileOutputStream("Bloques.txt"));
             salidaBloques.writeObject(blockchain);
@@ -141,6 +140,7 @@ public class Crud {
         } catch (IOException ex) {
             Logger.getLogger(UI.Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+*/
     }
 
     public static boolean verificarEsProfesor() {
