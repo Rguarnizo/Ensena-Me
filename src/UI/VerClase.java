@@ -11,6 +11,7 @@ import Logic.Crud;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
+import static Logic.Crud.verificarEsProfesor;
 import static Logic.Login.listaUsuarios;
 import static UI.Login.correo;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class VerClase extends javax.swing.JFrame {
 
     public ArrayList<Clase> listaClases = listaUsuarios.get(Logic.Login.usuarioLogeado).getListaClases();
-
+    public static boolean hayClases;
     /**
      * Creates new form SerProfesor
      */
@@ -37,9 +38,10 @@ public class VerClase extends javax.swing.JFrame {
 
     }
 
-    private void definirTablaClases() {
+    public void definirTablaClases() {
         if (listaClases.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "No hay clases asignadas para este usuario", "Sin clases", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No hay clases asignadas para ti. Animate a pedir un profesor.", "Sin clases", JOptionPane.INFORMATION_MESSAGE);
+            this.hayClases = false;
         } else {
 
             DefaultTableModel modelo = new DefaultTableModel();
@@ -71,8 +73,9 @@ public class VerClase extends javax.swing.JFrame {
                 modelo.addRow(fila);
             }
             tblClases.setModel(modelo);
+            this.hayClases = true;
         }
-
+        this.hayClases = false;
     }
 
     public void botonesTransparentes() {
@@ -117,12 +120,12 @@ public class VerClase extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCancelar = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
-        btn4 = new javax.swing.JButton();
-        btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btn4 = new javax.swing.JButton();
+        btn5 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClases = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -139,23 +142,6 @@ public class VerClase extends javax.swing.JFrame {
         });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 180, 50));
 
-        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 190, 50));
-
-        btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 190, 50));
-
-        btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 190, 50));
-
-        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 190, 50));
-
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +157,37 @@ public class VerClase extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(713, 20, 60, 50));
+
+        btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 200, 50));
+
+        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 200, 50));
+
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 200, 50));
+
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 200, 50));
 
         tblClases.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -244,10 +261,6 @@ public class VerClase extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn3ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
@@ -268,6 +281,33 @@ public class VerClase extends javax.swing.JFrame {
 
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+
+        if(verificarEsProfesor()){
+            new VerTutoria().setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Aun no eres profesor, animate a enseñar!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        // TODO add your handling code here:
+        new EduPay().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        new SerProfesor().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        // TODO add your handling code here:
+        new PedirClase().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn3ActionPerformed
 
     /**
      * @param args the command line arguments

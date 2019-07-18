@@ -8,6 +8,7 @@ package UI;
 import static Logic.Crud.verificarEsProfesor;
 import static Logic.Login.listaUsuarios;
 import static UI.Login.correo;
+import static UI.VerClase.hayClases;
 import javax.swing.JOptionPane;
 
 /**
@@ -172,8 +173,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
-        new VerClase().setVisible(true);
-        dispose();
+        new VerClase().setVisible(hayClases);
+        
+        if(hayClases){
+            dispose();
+        }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed

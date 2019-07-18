@@ -3,23 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/Data/Persona.java</file>
+            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/PedirClase.java</file>
+            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/VerClase.java</file>
             <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/SerProfesor.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/ModificarUsuario.java</file>
+            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/VerTutoria.java</file>
             <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/MenuPrincipal.java</file>
+            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/EduPay.java</file>
             <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/Login.java</file>
             <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/RegistroProfesor.java</file>
             <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/Registro.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/Logic/Crud.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/PedirClase.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/VerClase.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/Data/Profesor.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/VerTutoria.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/Logic/Login.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/Logic/PedirClase.java</file>
-            <file>file:/C:/Users/Ruben%20Dario%20Guarnizo/Documents/GitHub/Enseña%20Me/Ensena-Me/src/UI/EduPay.java</file>
-
         </group>
     </open-files>
 </project-private>

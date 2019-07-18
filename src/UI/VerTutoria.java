@@ -14,6 +14,7 @@ import static Logic.Crud.listaProfesores;
 import static Logic.Crud.verificarEsProfesor;
 import static Logic.Login.listaUsuarios;
 import static UI.Login.correo;
+import static UI.VerClase.hayClases;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -95,9 +96,9 @@ public class VerTutoria extends javax.swing.JFrame {
         btn3.setContentAreaFilled(false);
         btn3.setBorderPainted(false);
 
-        btn4.setOpaque(false);
-        btn4.setContentAreaFilled(false);
-        btn4.setBorderPainted(false);
+        btn3.setOpaque(false);
+        btn3.setContentAreaFilled(false);
+        btn3.setBorderPainted(false);
 
         btn5.setOpaque(false);
         btn5.setContentAreaFilled(false);
@@ -123,12 +124,12 @@ public class VerTutoria extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCancelarTutoria = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
-        btn4 = new javax.swing.JButton();
-        btn5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
+        btn5 = new javax.swing.JButton();
+        btn4 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTutorias = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -145,28 +146,6 @@ public class VerTutoria extends javax.swing.JFrame {
         });
         getContentPane().add(btnCancelarTutoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 200, 50));
 
-        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 200, 50));
-
-        btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 200, 50));
-
-        btn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 200, 50));
-
-        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 200, 50));
-
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +161,37 @@ public class VerTutoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(733, 10, 60, 60));
+
+        btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 200, 50));
+
+        btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 200, 50));
+
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 200, 50));
+
+        btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 200, 50));
 
         tblTutorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -262,14 +272,6 @@ public class VerTutoria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarTutoriaActionPerformed
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn2ActionPerformed
-
-    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn5ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          // TODO add your handling code here:
 
@@ -290,6 +292,32 @@ public class VerTutoria extends javax.swing.JFrame {
 
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        // TODO add your handling code here:
+        new VerClase().setVisible(hayClases);
+
+        if(hayClases){
+            dispose();
+        }
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        // TODO add your handling code here:
+        new EduPay().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        new SerProfesor().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        // TODO add your handling code here:
+        new PedirClase().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn4ActionPerformed
 
     /**
      * @param args the command line arguments

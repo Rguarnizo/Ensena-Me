@@ -9,6 +9,8 @@ import Data.Profesor;
 import static Logic.Crud.guardarBloques;
 import static Logic.Crud.guardarProfesores;
 import static Logic.Crud.guardarUsuarios;
+import static Logic.Crud.verificarEsProfesor;
+import static UI.VerClase.hayClases;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -91,11 +93,11 @@ public class PedirClase extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHorario = new javax.swing.JTable();
-        cbxLugar = new javax.swing.JComboBox<String>();
+        cbxLugar = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstProfesores = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
-        cbxAreaDeEstudio1 = new javax.swing.JComboBox<String>();
+        cbxAreaDeEstudio1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,6 +113,11 @@ public class PedirClase extends javax.swing.JFrame {
         getContentPane().add(btnPedir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 240, 50));
 
         btn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 200, 50));
 
         btn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -130,6 +137,11 @@ public class PedirClase extends javax.swing.JFrame {
         getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 200, 50));
 
         btn5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 200, 50));
 
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -178,7 +190,7 @@ public class PedirClase extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 300, 130));
 
-        cbxLugar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hemeroteca Nacional Universitaria\t", "Biblioteca Central", "Edificio de Ciencia y Tecnologia", "Edificio Julio Garavito", "Torre Central de Informatica", " " }));
+        cbxLugar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hemeroteca Nacional Universitaria\t", "Biblioteca Central", "Edificio de Ciencia y Tecnologia", "Edificio Julio Garavito", "Torre Central de Informatica", " " }));
         getContentPane().add(cbxLugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 190, 30));
 
         lstProfesores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,7 +210,7 @@ public class PedirClase extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 70, 60));
 
-        cbxAreaDeEstudio1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ciencias exactas", "Ciencias naturales", "Ciencias humanas", "Ciencias medicas" }));
+        cbxAreaDeEstudio1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciencias exactas", "Ciencias naturales", "Ciencias humanas", "Ciencias medicas" }));
         cbxAreaDeEstudio1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxAreaDeEstudio1ItemStateChanged(evt);
@@ -237,10 +249,21 @@ public class PedirClase extends javax.swing.JFrame {
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
+        new VerClase().setVisible(hayClases);
+        
+        if(hayClases){
+            dispose();
+        }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        // TODO add your handling code here:
+        
+        if(verificarEsProfesor()){
+            new VerTutoria().setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Aun no eres profesor, animate a enseñar!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -278,6 +301,17 @@ public class PedirClase extends javax.swing.JFrame {
     private void cbxAreaDeEstudio1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxAreaDeEstudio1ItemStateChanged
         mostrarProfesores(cbxAreaDeEstudio1.getSelectedItem().toString());
     }//GEN-LAST:event_cbxAreaDeEstudio1ItemStateChanged
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        new SerProfesor().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        // TODO add your handling code here:
+        new EduPay().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn5ActionPerformed
 
     /**
      * @param args the command line arguments
